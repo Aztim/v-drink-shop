@@ -1,0 +1,61 @@
+
+@import "blocks/header";
+
+ul,
+li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+a:active,
+a:focus,
+a {
+    text-decoration: none;
+    outline: none;
+    color: inherit;
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+button {
+    outline: none;
+    &:active {
+        outline: none;
+    }
+    &:focus {
+        outline: none;
+    }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+}
+
+p {
+    margin: 0;
+}
+
+body {
+    color: #2f3035;
+    overflow-x: hidden;
+    min-width: 320px;
+}
+
+.container {
+    max-width: 1200px;
+    padding: 0 15px;
+    margin: 0 auto;
+}
+
+.mobile-overflow{
+    @media screen and (max-width: 996px) {
+        width: 800px;
+      }
+}
