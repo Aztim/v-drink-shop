@@ -19,12 +19,12 @@
 
       <ul class="user-list">
         <li
-          class="user-list__item"
-          v-for="u in userList"
-          :key="u.alt">
-            <a class="user-list__link" href="#">
-              <img class="user-list__img" :src="require(`@/assets/img/icons/${u.src}`)" :alt="u.alt" />
-            </a>
+        class="user-list__item"
+        v-for="u in userList"
+        :key="u.alt">
+          <a class="user-list__link" href="#">
+            <img class="user-list__img" :src="require(`@/assets/img/icons/${u.src}`)" :alt="u.alt" />
+          </a>
         </li>
         <!-- <li class="user-list__item">
           <a class="user-list__link" href="#">
@@ -49,11 +49,11 @@
       <div class="container">
         <nav class="menu-categories">
           <a
-            v-for="c in categoriesList"
-            :key="c.text" class="menu-categories__link"
-            :class="c.class"
-            href="#">
-              {{ c.text }}
+          v-for="c in categoriesList"
+          :key="c.text" class="menu-categories__link"
+          :class="c.class"
+          href="#">
+            {{ c.text }}
           </a>
         </nav>
       </div>

@@ -1,13 +1,21 @@
 <template>
   <Navbar />
-  <MainLayout />
+  <component :is="layout + '-layout'" v-if="layout" />
 </template>
 
 <script>
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
 import MainLayout from './layout/MainLayout.vue'
 import Navbar from './components/Navbar.vue'
 export default {
-  // setup() {},
+  setup () {
+    const route = useRoute()
+
+    return {
+      layout: computed(() => route.meta.layout)
+    }
+  },
   components: { MainLayout, Navbar }
 }
 </script>
