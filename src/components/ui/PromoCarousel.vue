@@ -1,0 +1,54 @@
+<template>
+  <section class="promo">
+  <div class="container">
+    <div class="promo__wrapper">
+      <div class="promo-slider" id="promo-slider">
+        <Splide :options="{ rewind: true }">
+          <SplideSlide v-for="p in PromoSliderList" :key="p.src">
+            <router-link class="promo-slider__item" to="/">
+              <img class="promo-slider__img" :src="require(`@/assets/img/${p.src}`)" alt="promo banner">
+            </router-link>
+          </SplideSlide>
+        </Splide>
+      </div>
+
+      <a class="promo-sale" href="#">
+        <div class="promo-sale__top">
+          <div class="promo-sale__badge">
+            <span class="promo-sale__badge-text">sale</span>
+          </div>
+          <div class="promo-sale__price">
+            <span class="promo-sale__price-new">£36.95</span>
+            <span class="promo-sale__price-old">£39.95</span>
+          </div>
+        </div>
+        <img class="promo-sale__img" src="@/assets/img/promo_sale_image.png" alt="promo sale">
+
+      </a>
+    </div>
+  </div>
+</section>
+</template>
+
+<script>
+import { Splide, SplideSlide } from '@splidejs/vue-splide'
+import '@splidejs/splide/dist/css/themes/splide-default.min.css'
+
+export default {
+  components: { Splide, SplideSlide },
+  setup () {
+    const PromoSliderList = ([
+      { src: 'main_banner.jpg', to: '/' },
+      { src: 'main_banner.jpg', to: '/' },
+      { src: 'main_banner.jpg', to: '/' },
+      { src: 'main_banner.jpg', to: '/' }
+    ])
+
+    return { PromoSliderList }
+  }
+}
+</script>
+
+<style>
+
+</style>

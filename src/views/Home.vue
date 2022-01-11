@@ -1,17 +1,16 @@
 <template>
-  <div class="home">
-    asa!!!
+  <div>
+    <PromoCarousel />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-// import HelloWorld from '@/components/HelloWorld.vue' // @ is an alias to /src
+import PromoCarousel from '@/components/ui/PromoCarousel.vue'
 
-export default defineComponent({
+export default {
   name: 'Home',
   components: {
-    // HelloWorld
+    PromoCarousel
   }
-})
+}
 </script>
