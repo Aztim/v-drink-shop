@@ -18,12 +18,15 @@
             <span class="promo-sale__badge-text">sale</span>
           </div>
           <div class="promo-sale__price">
-            <span class="promo-sale__price-new">£36.95</span>
-            <span class="promo-sale__price-old">£39.95</span>
+            <span class="promo-sale__price-new">£11.99</span>
+            <span class="promo-sale__price-old">£15.99</span>
           </div>
         </div>
         <img class="promo-sale__img" src="@/assets/img/promo_sale_image.png" alt="promo sale">
-
+        <h4 class="promo-sale__title">BUDWEISER LAGER BEER BOTTLES 12 X 300ML</h4>
+        <p class="promo-sale__bottom">
+          <span>Winter sale</span>
+        </p>
       </a>
     </div>
   </div>
