@@ -75,11 +75,11 @@ export default {
 
     const categoriesList = ([
       { text: 'Wine', class: 'menu-categories__link--active' },
-      { text: 'Liquor' },
+      { text: 'Liqueur' },
       { text: 'Beer' },
       { text: 'Cider' },
       { text: 'Gin' },
-      { text: 'Rum' }
+      { text: 'Whiskey' }
     ])
 
     return { userList, categoriesList }
