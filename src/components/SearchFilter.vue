@@ -4,18 +4,23 @@
     <div class="search-tabs">
       <div class="search-tabs__header">
         <div class="mobile-overflow">
-          <div class="search-tabs__title active">Поиск по номеру</div>
-          <div class="search-tabs__title">Поиск по марке</div>
-          <div class="search-tabs__title">Поиск по названию товара</div>
+          <div
+          class="search-tabs__title"
+          v-for="(s, index) in searchTabsTitle"
+          :key="s.text"
+          :class="index === selectedIndex ? 'active' : null"
+          @click="tabClassToggle (index)"
+          >
+            {{ s.text }}
+          </div>
         </div>
       </div>
 
       <div class="search-tabs__content-header">
         <div
-        v-for="s in searchForm"
-        :key="s.placeholder"  class="search-tabs__content-item" :class="s.class" >
+          class="search-tabs__content-item active"  >
           <form class="search-tabs__content-form" action="get">
-            <input class="search-tabs__content-input" type="text" placeholder="Введите номер">
+            <input class="search-tabs__content-input" type="text" :placeholder="searchForm[selectedIndex].placeholder">
             <button class="search-tabs__content-btn" type="submit">Искать</button>
           </form>
         </div>
@@ -26,16 +31,27 @@
 </template>
 
 <script>
+import { ref } from 'vue'
 export default {
   setup () {
     const searchForm = ([
-      { placeholder: 'Введите номер', class: 'active' },
+      { placeholder: 'Введите номер' },
       { placeholder: 'Введите марку' },
       { placeholder: 'Введите название' }
 
     ])
+    const searchTabsTitle = ([
+      { text: 'Поиск по номеру' },
+      { text: 'Поиск по марке' },
+      { text: 'Поиск по названию товара' }
+    ])
+    const selectedIndex = ref(0)
 
-    return { searchForm }
+    const tabClassToggle = (id) => {
+      selectedIndex.value = id
+    }
+
+    return { searchForm, searchTabsTitle, selectedIndex, tabClassToggle }
   }
 }
 </script>
