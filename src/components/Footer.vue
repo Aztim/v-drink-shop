@@ -14,39 +14,44 @@
           <button class="footer__subscribe-btn" type="submit">subscribe</button>
         </form>
       </div>
+
       <div class="footer__info">
         <div class="footer__info-title"><span>General</span></div>
         <div class="footer__info-wrapper">
-          <a class="footer__info-link" href="#">About Us</a>
-          <a class="footer__info-link" href="#">Terms & Conditions</a>
-          <a class="footer__info-link" href="#">News</a>
-          <a class="footer__info-link" href="#">Careers</a>
+          <a
+          v-for="f in footerInfo"
+          :key="f.text"
+          class="footer__info-link"
+          href="#">
+            {{ f.text }}
+          </a>
         </div>
       </div>
+
       <div class="footer__shop">
         <div class="footer__shop-title"><span>Contact Us</span></div>
         <div class="footer__shop-wrapper">
-          <a class="footer__shop-link" href="#">Delivery Information</a>
-          <a class="footer__shop-link" href="#">Order Tracking</a>
-          <a class="footer__shop-link" href="#">Returns Policy</a>
-          <a class="footer__shop-link" href="#">Store Locator</a>
+          <a
+          v-for="f in footerShop"
+          :key="f.text"
+          class="footer__shop-link"
+          href="#">
+            {{ f.text }}
+          </a>
         </div>
       </div>
+
       <div class="footer__social">
-        <a class="footer__social-icon" href="#">
-          <img class="footer__social-icon" src="@/assets/img/icons/instagram.svg" alt="instagram">
-        </a>
-        <a class="footer__social-icon" href="#">
-          <img class="footer__social-icon" src="@/assets/img/icons/vk.svg" alt="vk">
-        </a>
-        <a class="footer__social-icon" href="#">
-          <img class="footer__social-icon" src="@/assets/img/icons/facebook.svg" alt="facebook">
-        </a>
-        <a class="footer__social-icon" href="#">
-          <img class="footer__social-icon" src="@/assets/img/icons/youtube.svg" alt="youtube">
+        <a
+        v-for="f in footerIcon"
+        :key="f.src"
+        class="footer__social-icon"
+        href="#">
+          <img class="footer__social-icon" :src="require(`@/assets/img/icons/${f.src}.svg`)" :alt="f.src">
         </a>
       </div>
     </div>
+
     <div class="footer__policy">
       <a class="footer__policy-link" href="#">Privacy Policies</a>
       <a class="footer__policy-link" href="#">© 2022 BLACK SHIP. ALL RIGHTS RESERVED</a>
@@ -57,7 +62,29 @@
 
 <script>
 export default {
+  setup () {
+    const footerInfo = ([
+      { text: 'About Us' },
+      { text: 'Terms & Conditions' },
+      { text: 'News' },
+      { text: 'Careers' }
+    ])
 
+    const footerShop = ([
+      { text: 'Delivery Information' },
+      { text: 'Order Tracking' },
+      { text: 'Returns Policy' },
+      { text: 'Store Locator' }
+    ])
+
+    const footerIcon = ([
+      { src: 'instagram' },
+      { src: 'vk' },
+      { src: 'facebook' },
+      { src: 'youtube' }
+    ])
+    return { footerInfo, footerShop, footerIcon }
+  }
 }
 </script>
 
