@@ -9,6 +9,14 @@ const routes: Array<RouteRecordRaw> = [
     meta: {
       layout: 'main'
     }
+  },
+  {
+    path: '/test',
+    name: 'ProductItem',
+    component: () => import('../components/ProductItem.vue'),
+    meta: {
+      layout: 'main'
+    }
   }
 ]
 

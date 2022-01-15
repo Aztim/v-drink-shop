@@ -14,7 +14,7 @@
       </a>
       <a class="header-info" href="#">
         <img class="header-info__img" src="@/assets/img/icons/geopoint.svg" alt="geopoint" />
-        <span class="header-info__text">Moscow, Arbat st. 55</span>
+        <span class="header-info__text">London, Lewisham St. 35</span>
       </a>
 
       <ul class="user-list">

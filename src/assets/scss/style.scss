@@ -6,6 +6,16 @@
 @import "blocks/_products";
 @import "blocks/_banner";
 @import "blocks/_footer";
+@import "blocks/_footer";
+@import "blocks/_breadcrumbs";
+
+html{
+  box-sizing: border-box;
+}
+
+*, *::before, *::after{
+  box-sizing: inherit;
+}
 
 ul,
 li {
@@ -50,6 +60,7 @@ p {
 
 body {
     color: #2f3035;
+    font-family: sans-serif;
     overflow-x: hidden;
     min-width: 320px;
 }
