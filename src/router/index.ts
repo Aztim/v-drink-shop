@@ -17,6 +17,14 @@ const routes: Array<RouteRecordRaw> = [
     meta: {
       layout: 'main'
     }
+  },
+  {
+    path: '/catalog',
+    name: 'Catalog',
+    component: () => import('../components/Catalog.vue'),
+    meta: {
+      layout: 'main'
+    }
   }
 ]
 
