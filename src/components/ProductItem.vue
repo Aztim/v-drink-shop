@@ -51,7 +51,7 @@
         <div class="product-card__tabs">
           <div class="product-card__tabs-header">
             <div class="product-card__tabs-title active">Details</div>
-            <div class="product-card__tabs-title">Available in 1 Stores</div>
+            <div class="product-card__tabs-title">Where to buy</div>
           </div>
           <div class="product-card__tabs-content-header">
             <div class="product-card__tabs-content-item active">
@@ -78,7 +78,7 @@
                 </li>
               </ul>
             </div>
-            <div class="product-card__tabs-content-item">available in 1 stores</div>
+            <div class="product-card__tabs-content-item">Where to buy</div>
           </div>
           <a class="product-card__more" href="#">Show more</a>
           <div class="product-card__buy">
@@ -93,6 +93,101 @@
   </div>
 </section>
 
+<section class="product-page__tabs">
+  <div class="container">
+    <div class="product-page__tabs-header">
+      <div class="product-page__mobile-overflow">
+        <div class="product-page__tabs-title">Details</div>
+        <div class="product-page__tabs-title">Reviews</div>
+        <div class="product-page__tabs-title">Delivery</div>
+        <div class="product-page__tabs-title">Service</div>
+        <div class="product-page__tabs-title">Returns & Refunds</div>
+      </div>
+    </div>
+    <div class="product-page__tabs-content-header">
+      <div class="product-page__tabs-content-item active">
+        <form class="card">
+          <div class="card__top">
+            <label class="card__top-search">
+              Store
+              <input class="card__top-text" type="text">
+            </label>
+            <label class="card__top-pickup">
+              <input class="filter-style" name="radio" type="radio" checked>
+              Pick up today
+            </label>
+            <label class="card__top-pickup">
+              <input class="filter-style" name="radio" type="radio">
+              Pick up 3-5 days
+            </label>
+          </div>
+          <ul class="card__list">
+            <li class="card__list-item-title">
+              <div class="card__list-address card__list-address-title">Address</div>
+              <div class="card__list-hours card__list-hours-title">Store Hours</div>
+              <div class="card__list-available card__list-available-title">Availability</div>
+              <div class="card__list-count card__list-count-title">Quantity</div>
+              <div class="card__list-btn card__list-btn-title"></div>
+            </li>
+            <li class="card__list-item">
+              <div class="card__list-address">London, Lewisham St. 35</div>
+              <div class="card__list-hours">
+                <div class="card__list-hours--wrapper">
+                  <span>mon-sat:</span><span>7am – 6pm</span>
+                </div>
+                <div class="card__list-hours--wrapper">
+                  <span>sun:</span><span>8am – 1pm</span>
+                </div>
+              </div>
+              <div class="card__list-available">In-Stock</div>
+              <div class="card__list-count">1</div>
+              <div class="card__list-btn">
+                <button type="submit">add</button>
+              </div>
+            </li>
+            <li class="card__list-item">
+              <div class="card__list-address">London, Lewisham St. 40</div>
+              <div class="card__list-hours">
+                <div class="card__list-hours--wrapper">
+                  <span>mon-sat:</span><span>7am – 6pm</span>
+                </div>
+                <div class="card__list-hours--wrapper">
+                  <span>sun:</span><span>8am – 1pm</span>
+                </div>
+              </div>
+              <div class="card__list-available">In-Stock</div>
+              <div class="card__list-count">2</div>
+              <div class="card__list-btn">
+                <button type="submit">add</button>
+              </div>
+            </li>
+            <li class="card__list-item">
+              <div class="card__list-address">London, <br>Lewisham St. 50</div>
+              <div class="card__list-hours">
+                <div class="card__list-hours--wrapper">
+                  <span>mon-sat:</span><span>7am – 6pm</span>
+                </div>
+                <div class="card__list-hours--wrapper">
+                  <span>sun:</span><span>8am – 1pm</span>
+                </div>
+              </div>
+              <div class="card__list-available">Out-Stock</div>
+              <div class="card__list-count">0</div>
+              <div class="card__list-btn">
+                <button type="submit">add</button>
+              </div>
+            </li>
+          </ul>
+        </form>
+      </div>
+      <div class="product-page__tabs-content-item">Details</div>
+      <div class="product-page__tabs-content-item">Reviews</div>
+      <div class="product-page__tabs-content-item">Delivery</div>
+      <div class="product-page__tabs-content-item">Service</div>
+      <div class="product-page__tabs-content-item">Returns & Refunds</div>
+    </div>
+  </div>
+</section>
 </template>
 
 <script>
