@@ -19,12 +19,12 @@
   <div class="container">
     <div class="product-card__wrapper">
       <div class="product-card__img-box product-card__sale">
-        <img class="product-card__image" src="@/assets/img/products/jameson.png" alt="product">
+        <img class="product-card__image" :src="productData.img" alt="product">
         <p class="product-card__price-old">
-          £39.99
+          £{{productData.oldPrice}}
         </p>
         <p class="product-card__price-new">
-          £36.99
+          £{{productData.priceNew}}
         </p>
         <a class="product-card__price-link" href="#">
           Found cheaper? We will decrease the price
@@ -32,10 +32,10 @@
       </div>
       <div class="product-card__content">
         <h1 class="product-card__title">
-          Jameson Black Barrel Irish Whiskey 70cl
+          {{ productData.title }}
         </h1>
         <p class="product-card__vendor">
-          SKU: 0002190
+          SKU: {{ productData.sku }}
         </p>
         <div class="product-card__actions">
           <button class="product-card__actions-favorite" type="button">
@@ -48,6 +48,7 @@
             <div data-rateyo-rating="4" id="rateYo"></div>
           </div>
         </div>
+
         <div class="product-card__tabs">
           <div class="product-card__tabs-header">
             <div class="product-card__tabs-title active">Details</div>
@@ -55,26 +56,10 @@
           </div>
           <div class="product-card__tabs-content-header">
             <div class="product-card__tabs-content-item active">
-              <ul class="product-card__list">
-                <li class="product-card__item">
-                  <div class="product-card__item-left">Country</div>
-                  <div class="product-card__item-right">Ireland</div>
-                </li>
-                <li class="product-card__item">
-                  <div class="product-card__item-left">Strength (ABV)</div>
-                  <div class="product-card__item-right">40%</div>
-                </li>
-                <li class="product-card__item">
-                  <div class="product-card__item-left">Size</div>
-                  <div class="product-card__item-right">700ml</div>
-                </li>
-                <li class="product-card__item">
-                  <div class="product-card__item-left">Limited Edition</div>
-                  <div class="product-card__item-right">No</div>
-                </li>
-                <li class="product-card__item">
-                  <div class="product-card__item-left">Brand</div>
-                  <div class="product-card__item-right">jameson</div>
+               <ul class="product-card__list" >
+                <li class="product-card__item" v-for="(key, value ) in productData.card__list" :key="value">
+                  <div class="product-card__item-left">{{ value }}</div>
+                  <div class="product-card__item-right">{{ key }}</div>
                 </li>
               </ul>
             </div>
@@ -192,7 +177,26 @@
 
 <script>
 export default {
-
+  setup () {
+    const productData = (
+      {
+        img: require('@/assets/img/products/jameson.png'),
+        oldPrice: 39.99,
+        priceNew: 36.99,
+        title: 'Jameson Black Barrel Irish Whiskey 70cl',
+        sku: '0002190',
+        card__list:
+          {
+            Country: 'Ireland',
+            'Strength (ABV)': '40%',
+            Size: ' 700ml',
+            'Limited Edition': 'No',
+            Brand: 'jameson'
+          }
+      }
+    )
+    return { productData }
+  }
 }
 </script>
 
