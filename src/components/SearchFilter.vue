@@ -21,7 +21,7 @@
           class="search-tabs__content-item active"  >
           <form class="search-tabs__content-form" action="get">
             <input class="search-tabs__content-input" type="text" :placeholder="searchForm[selectedIndex].placeholder">
-            <button class="search-tabs__content-btn" type="submit">Искать</button>
+            <button class="search-tabs__content-btn" type="submit">Find</button>
           </form>
         </div>
       </div>
@@ -35,15 +35,15 @@ import { ref } from 'vue'
 export default {
   setup () {
     const searchForm = ([
-      { placeholder: 'Введите номер' },
-      { placeholder: 'Введите марку' },
-      { placeholder: 'Введите название' }
+      { placeholder: 'Enter the country' },
+      { placeholder: 'Enter the brand' },
+      { placeholder: 'Enter a name' }
 
     ])
     const searchTabsTitle = ([
-      { text: 'Поиск по номеру' },
-      { text: 'Поиск по марке' },
-      { text: 'Поиск по названию товара' }
+      { text: 'Find by country' },
+      { text: 'Find by brand' },
+      { text: 'Find by product name' }
     ])
     const selectedIndex = ref(0)
 

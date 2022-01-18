@@ -23,33 +23,9 @@
           <div class="products-tabs__content-item popular-tabs__content-item active">
             <div class="product-slider">
 
-              <div
-              class="product-slider__item"
-              v-for="(p) in productList"
-              :key="p.img"
-              >
-                <div class="product-item__wrapper" :class="p.class">
-                  <button class="product-item__favourite" type="button"></button>
-                  <button class="product-item__basket" type="button">
-                    <img src="@/assets/img/icons/basket_white.svg" alt="basket">
-                  </button>
-                  <a class="product-item__notify-link" href="#">
-                    Сообщить о поступлении
-                  </a>
-                  <a class="product-item product-item__sale" href="#">
-                    <p class="product-item__hover-text">
-                      посмотреть товар
-                    </p>
-                    <img class="product-item__img" :src="require(`@/assets/img/${p.img}`)" alt="popular">
-                    <h3 class="product-item__title">{{ p.title }}
-                    </h3>
-                    <p class="product-item__price">{{ p.price }}</p>
-                    <p class="product-item__notify-text">
-                      нет в наличии
-                    </p>
-                  </a>
-                </div>
-              </div>
+              <vue3Carousel
+                :productList="productList"
+              />
 
             </div>
           </div>
@@ -70,7 +46,9 @@
 
 <script>
 import { ref } from 'vue'
+import vue3Carousel from './ui/vue3Carousel.vue'
 export default {
+  components: { vue3Carousel },
   setup () {
     const productsTabsTitle = ([
       { title: 'Моторы' },
