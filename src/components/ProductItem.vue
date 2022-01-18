@@ -82,11 +82,7 @@
   <div class="container">
     <div class="product-page__tabs-header">
       <div class="product-page__mobile-overflow">
-        <div class="product-page__tabs-title">Details</div>
-        <div class="product-page__tabs-title">Reviews</div>
-        <div class="product-page__tabs-title">Delivery</div>
-        <div class="product-page__tabs-title">Service</div>
-        <div class="product-page__tabs-title">Returns & Refunds</div>
+        <div class="product-page__tabs-title" v-for="(key) in pageTabs" :key="key">{{ key }}</div>
       </div>
     </div>
     <div class="product-page__tabs-content-header">
@@ -106,6 +102,7 @@
               Pick up 3-5 days
             </label>
           </div>
+
           <ul class="card__list">
             <li class="card__list-item-title">
               <div class="card__list-address card__list-address-title">Address</div>
@@ -114,50 +111,18 @@
               <div class="card__list-count card__list-count-title">Quantity</div>
               <div class="card__list-btn card__list-btn-title"></div>
             </li>
-            <li class="card__list-item">
-              <div class="card__list-address">London, Lewisham St. 35</div>
+            <li class="card__list-item" v-for="(p) in addressList" :key="p.address">
+              <div class="card__list-address">{{ p.address }}</div>
               <div class="card__list-hours">
                 <div class="card__list-hours--wrapper">
-                  <span>mon-sat:</span><span>7am – 6pm</span>
+                  <span>mon-sat:</span><span>{{ p.hours }}</span>
                 </div>
                 <div class="card__list-hours--wrapper">
-                  <span>sun:</span><span>8am – 1pm</span>
+                  <span>sun:</span><span>{{ p.sunHours }}</span>
                 </div>
               </div>
-              <div class="card__list-available">In-Stock</div>
-              <div class="card__list-count">1</div>
-              <div class="card__list-btn">
-                <button type="submit">add</button>
-              </div>
-            </li>
-            <li class="card__list-item">
-              <div class="card__list-address">London, Lewisham St. 40</div>
-              <div class="card__list-hours">
-                <div class="card__list-hours--wrapper">
-                  <span>mon-sat:</span><span>7am – 6pm</span>
-                </div>
-                <div class="card__list-hours--wrapper">
-                  <span>sun:</span><span>8am – 1pm</span>
-                </div>
-              </div>
-              <div class="card__list-available">In-Stock</div>
-              <div class="card__list-count">2</div>
-              <div class="card__list-btn">
-                <button type="submit">add</button>
-              </div>
-            </li>
-            <li class="card__list-item">
-              <div class="card__list-address">London, <br>Lewisham St. 50</div>
-              <div class="card__list-hours">
-                <div class="card__list-hours--wrapper">
-                  <span>mon-sat:</span><span>7am – 6pm</span>
-                </div>
-                <div class="card__list-hours--wrapper">
-                  <span>sun:</span><span>8am – 1pm</span>
-                </div>
-              </div>
-              <div class="card__list-available">Out-Stock</div>
-              <div class="card__list-count">0</div>
+              <div class="card__list-available">{{ p.availability }}</div>
+              <div class="card__list-count">{{ p.quantity }}</div>
               <div class="card__list-btn">
                 <button type="submit">add</button>
               </div>
@@ -165,11 +130,12 @@
           </ul>
         </form>
       </div>
-      <div class="product-page__tabs-content-item">Details</div>
+
+      <!-- <div class="product-page__tabs-content-item">Details</div>
       <div class="product-page__tabs-content-item">Reviews</div>
       <div class="product-page__tabs-content-item">Delivery</div>
       <div class="product-page__tabs-content-item">Service</div>
-      <div class="product-page__tabs-content-item">Returns & Refunds</div>
+      <div class="product-page__tabs-content-item">Returns & Refunds</div> -->
     </div>
   </div>
 </section>
@@ -195,7 +161,39 @@ export default {
           }
       }
     )
-    return { productData }
+
+    const pageTabs = {
+      tab1: 'Details',
+      tab2: 'Reviews',
+      tab3: 'Delivery',
+      tab4: 'Service',
+      tab5: 'Returns & Refunds'
+    }
+    const addressList = [
+      {
+        address: 'London, Lewisham St. 35',
+        hours: '7am – 6pm',
+        sunHours: '8am – 1pm',
+        availability: 'In-Stock',
+        quantity: 1
+      },
+      {
+        address: 'London, Lewisham St. 40',
+        hours: '7am – 6pm',
+        sunHours: '8am – 1pm',
+        availability: 'In-Stock',
+        quantity: 2
+      },
+      {
+        address: 'London, Lewisham St. 50',
+        hours: '7am – 6pm',
+        sunHours: '8am – 1pm',
+        availability: 'Out-Stock',
+        quantity: 0
+      }
+    ]
+
+    return { productData, pageTabs, addressList }
   }
 }
 </script>
