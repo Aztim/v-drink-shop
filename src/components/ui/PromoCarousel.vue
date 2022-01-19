@@ -4,7 +4,7 @@
     <div class="promo__wrapper">
       <div class="promo-slider" id="promo-slider">
         <Splide :options="{ rewind: true }">
-          <SplideSlide v-for="p in PromoSliderList" :key="p.src">
+          <SplideSlide v-for="p in promoSliderList" :key="p.src">
             <router-link class="promo-slider__item" to="/">
               <img class="promo-slider__img" :src="require(`@/assets/img/${p.src}`)" alt="promo banner">
             </router-link>
@@ -40,14 +40,14 @@ import '@splidejs/splide/dist/css/themes/splide-default.min.css'
 export default {
   components: { Splide, SplideSlide },
   setup () {
-    const PromoSliderList = ([
+    const promoSliderList = ([
       { src: 'main_banner.jpg', to: '/' },
       { src: 'main_banner.jpg', to: '/' },
       { src: 'main_banner.jpg', to: '/' },
       { src: 'main_banner.jpg', to: '/' }
     ])
 
-    return { PromoSliderList }
+    return { promoSliderList }
   }
 }
 </script>
