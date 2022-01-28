@@ -1,4 +1,4 @@
-# vue-drink-shop
+# vue-drink
 
 ## Project setup
 ```

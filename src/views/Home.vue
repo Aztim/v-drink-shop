@@ -3,13 +3,15 @@
     <PromoCarousel />
     <SearchFilter />
     <Categories />
-    <SliderSection title="BEST SELLERS" />
+    <SliderSection :sale="requests" title="BEST SELLERS" />
     <Banner />
     <SliderSection  title="RELATED PRODUCTS" :link="false" />
   </div>
 </template>
 
-<script lang="ts">
+<script>
+import { onMounted, computed } from 'vue'
+import { useStore } from 'vuex'
 import PromoCarousel from '@/components/ui/PromoCarousel.vue'
 import SearchFilter from '@/components/SearchFilter.vue'
 import Categories from '@/components/Categories.vue'
@@ -24,6 +26,18 @@ export default {
     Categories,
     SliderSection,
     Banner
+  },
+
+  setup () {
+    const store = useStore()
+    onMounted(async () => {
+      await store.dispatch('request/load')
+    })
+    const requests = computed(() => store.getters['request/requests'])
+    return {
+      requests
+    }
   }
+
 }
 </script>

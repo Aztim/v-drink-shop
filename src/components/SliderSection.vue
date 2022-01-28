@@ -6,14 +6,13 @@
       <div class="products-tabs">
         <div class="products-tabs__header popular-tabs__header">
           <div class="mobile-overflow">
-
             <div
-            class="products-tabs__title popular-tabs__title"
-            v-for="(p, index) in productsTabsTitle"
-            :key="p.title"
-            :class="index === selectedIndex ? 'active' : null"
-            @click="classToggle(index)"
-            >
+              class="products-tabs__title popular-tabs__title"
+              v-for="(p, index) in productsTabsTitle"
+              :key="p.title"
+              :class="index === selectedIndex ? 'active' : null"
+              @click="classToggle(index)"
+              >
               {{ p.title }}
             </div>
 
@@ -45,6 +44,10 @@ import { ref } from 'vue'
 import vue3Carousel from './ui/vue3Carousel.vue'
 export default {
   props: {
+    sale: {
+      type: Object,
+      required: true
+    },
     title: {
       type: String,
       required: true
@@ -65,32 +68,30 @@ export default {
       { title: 'Whiskey' }
     ])
 
-    const productList = ([[
-      { title: 'Спасательное снаряжение', price: 6900, img: 'popular-1.png' },
-      { title: 'Спасательное снаряжение', price: 6900, img: 'popular-1.png' },
-      { title: 'Спасательное снаряжение', price: 6900, img: 'popular-1.png' },
-      { title: 'Спасательное снаряжение', price: 6900, img: 'popular-1.png' },
-      { title: 'Спасательное снаряжение', price: 6900, img: 'popular-1.png' },
-      { title: 'Спасательное снаряжение', price: 6900, img: 'popular-1.png' }
-    ],
-    [
-      { title: 'VODKA', price: 6900, img: 'empty.png' }
-    ],
-    [
-      { title: 'Liqueur', price: 6900, img: 'empty.png' }
-    ],
-    [
-      { title: 'Beer', price: 6900, img: 'empty.png' }
-    ],
-    [
-      { title: 'Cider', price: 6900, img: 'empty.png' }
-    ],
-    [
-      { title: 'Gin', price: 6900, img: 'empty.png' }
-    ],
-    [
-      { title: 'Whiskey', price: 6900, img: 'empty.png' }
-    ]
+    const productList = ([
+      [
+        { title: 'Vodka', price: 6900, img: 'empty.png' },
+        { title: 'Vodka', price: 6900, img: 'empty.png' },
+        { title: 'Vodka', price: 6900, img: 'empty.png' },
+        { title: 'Vodka', price: 6900, img: 'empty.png' },
+        { title: 'Vodka', price: 6900, img: 'empty.png' },
+        { title: 'Vodka', price: 6900, img: 'empty.png' }
+      ],
+      [
+        { title: 'Liqueur', price: 6900, img: 'empty.png' }
+      ],
+      [
+        { title: 'Beer', price: 6900, img: 'empty.png' }
+      ],
+      [
+        { title: 'Cider', price: 6900, img: 'empty.png' }
+      ],
+      [
+        { title: 'Gin', price: 6900, img: 'empty.png' }
+      ],
+      [
+        { title: 'Whiskey', price: 6900, img: 'empty.png' }
+      ]
     ])
 
     const selectedIndex = ref(0)
