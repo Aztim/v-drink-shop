@@ -11,11 +11,10 @@
               v-for="(p, index) in productsTabsTitle"
               :key="p.title"
               :class="index === selectedIndex ? 'active' : null"
-              @click="classToggle(index)"
+              @click="tabsToggle(index)"
               >
               {{ p.title }}
             </div>
-
           </div>
         </div>
 
@@ -24,7 +23,7 @@
             <div class="product-slider">
 
               <vue3Carousel
-                :productList="productList[selectedIndex]"
+                :productList="productList"
               />
 
             </div>
@@ -40,12 +39,13 @@
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import vue3Carousel from './ui/vue3Carousel.vue'
+// import swiper from './ui/swiperCarousel.vue'
 export default {
   props: {
-    sale: {
-      type: Object,
+    salesRequest: {
+      type: Array,
       required: true
     },
     title: {
@@ -58,49 +58,29 @@ export default {
     }
   },
   components: { vue3Carousel },
-  setup () {
+  setup (props) {
     const productsTabsTitle = ([
-      { title: 'Vodka' },
-      { title: 'Liqueur' },
       { title: 'Beer' },
       { title: 'Cider' },
       { title: 'Gin' },
+      { title: 'Liqueur' },
+      { title: 'Vodka' },
       { title: 'Whiskey' }
     ])
 
-    const productList = ([
-      [
-        { title: 'Vodka', price: 6900, img: 'empty.png' },
-        { title: 'Vodka', price: 6900, img: 'empty.png' },
-        { title: 'Vodka', price: 6900, img: 'empty.png' },
-        { title: 'Vodka', price: 6900, img: 'empty.png' },
-        { title: 'Vodka', price: 6900, img: 'empty.png' },
-        { title: 'Vodka', price: 6900, img: 'empty.png' }
-      ],
-      [
-        { title: 'Liqueur', price: 6900, img: 'empty.png' }
-      ],
-      [
-        { title: 'Beer', price: 6900, img: 'empty.png' }
-      ],
-      [
-        { title: 'Cider', price: 6900, img: 'empty.png' }
-      ],
-      [
-        { title: 'Gin', price: 6900, img: 'empty.png' }
-      ],
-      [
-        { title: 'Whiskey', price: 6900, img: 'empty.png' }
-      ]
-    ])
-
+    const productList = ref()
     const selectedIndex = ref(0)
 
-    const classToggle = (id) => {
+    watch(props, val => {
+      productList.value = props.salesRequest[selectedIndex.value]
+    })
+
+    const tabsToggle = (id) => {
       selectedIndex.value = id
+      productList.value = props.salesRequest[selectedIndex.value]
     }
 
-    return { productsTabsTitle, selectedIndex, productList, classToggle }
+    return { productsTabsTitle, selectedIndex, tabsToggle, productList }
   }
 }
 </script>

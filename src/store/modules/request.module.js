@@ -1,11 +1,12 @@
-// import axios from '@/axios/request'
-import axios from 'axios'
+import axios from '@/axios/request'
 
 export default {
   namespaced: true,
   state () {
     return {
-      requests: []
+      requests: [],
+      tasks: [
+      ]
     }
   },
 
@@ -20,15 +21,15 @@ export default {
       try {
         const { data } = await axios.get('https://vue-drink-shop-default-rtdb.firebaseio.com/sale.json')
         // const requests = Object.keys(data).map(id => ({ ...data[id], id }))
-        commit('setRequests', data)
+        const requests = Object.keys(data).map(id => ({ ...data[id] }))
+        commit('setRequests', requests)
       } catch (e) {
-        dispatch('setMessage', {
-          value: e.message,
-          type: 'danger'
-        }, { root: true })
+        // dispatch('setMessage', {
+        //   value: e.message,
+        //   type: 'danger'
+        // }, { root: true })
       }
     }
-
   },
   getters: {
     requests (state) {

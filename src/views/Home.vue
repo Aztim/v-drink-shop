@@ -3,9 +3,9 @@
     <PromoCarousel />
     <SearchFilter />
     <Categories />
-    <SliderSection :sale="requests" title="BEST SELLERS" />
+    <SliderSection :salesRequest="salesRequest" title="BEST SELLERS" />
     <Banner />
-    <SliderSection  title="RELATED PRODUCTS" :link="false" />
+    <!-- <SliderSection  title="RELATED PRODUCTS" :link="false" /> -->
   </div>
 </template>
 
@@ -33,9 +33,9 @@ export default {
     onMounted(async () => {
       await store.dispatch('request/load')
     })
-    const requests = computed(() => store.getters['request/requests'])
+    const salesRequest = computed(() => store.getters['request/requests'])
     return {
-      requests
+      salesRequest
     }
   }
 

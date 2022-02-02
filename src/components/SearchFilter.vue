@@ -35,13 +35,11 @@ import { ref } from 'vue'
 export default {
   setup () {
     const searchForm = ([
-      { placeholder: 'Enter the country' },
       { placeholder: 'Enter the brand' },
       { placeholder: 'Enter a name' }
 
     ])
     const searchTabsTitle = ([
-      { text: 'Find by country' },
       { text: 'Find by brand' },
       { text: 'Find by product name' }
     ])

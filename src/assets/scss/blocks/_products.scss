@@ -166,6 +166,19 @@
   content: "SALE";
   padding: 6px 15px 8px;
   position: absolute;
+  background: #B22222;
+  color: #FFF;
+  top: 0;
+  left: 0;
+  text-transform: uppercase;
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing: 0.07em;
+}
+.product-item__new::before{
+  content: "NEW";
+  padding: 6px 15px 8px;
+  position: absolute;
   background: #1C62CD;
   color: #FFF;
   top: 0;
@@ -200,9 +213,10 @@
     display: none;
     position: absolute;
     color: #1C62CD;
-    text-decoration: underline;
+    // text-decoration: underline;
     bottom: 25px;
-    font-size: 16px;
+    // font-size: 16px;
+    font-weight: bold;
     text-align: center;
     width: 100%;
     line-height: 19px;

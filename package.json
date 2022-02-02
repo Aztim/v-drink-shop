@@ -11,6 +11,8 @@
     "@splidejs/vue-splide": "^0.5.15",
     "axios": "^0.25.0",
     "core-js": "^3.6.5",
+    "firebase": "^9.6.5",
+    "swiper": "^6.8.4",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",
     "vue3-carousel": "^0.1.35",

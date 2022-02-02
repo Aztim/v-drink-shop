@@ -6,7 +6,7 @@
       <a class="categories-item" href="#" v-for="c in categoriesTitle" :key="c.title">
         <div class="categories-item__text">
           <h4 class="categories-item__title">{{ c.title }}</h4>
-          <p class="categories-item__subtitle">More info</p>
+          <p class="categories-item__subtitle">More</p>
         </div>
         <div class="categories-item__img">
           <img :src="require(`@/assets/img/categories/${c.img}`)" alt="categories">
