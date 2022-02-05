@@ -34,6 +34,7 @@ export default {
       await store.dispatch('request/load')
     })
     const salesRequest = computed(() => store.getters['request/requests'])
+    // const test = Object.keys(salesRequest.value).map(id => ({ ...salesRequest.value[id], id }))
     return {
       salesRequest
     }

@@ -21,18 +21,18 @@
         <div class="products-tabs__content-header">
           <div class="products-tabs__content-item popular-tabs__content-item active">
             <div class="product-slider">
-
               <vue3Carousel
                 :productList="productList"
               />
-
             </div>
           </div>
         </div>
       </div>
-      <div class="products__link" v-if="link">
+
+      <div class="products__link">
         <a class="products__link-more" href="#">show more</a>
       </div>
+
     </div>
   </div>
 </section>
@@ -41,7 +41,6 @@
 <script>
 import { ref, watch } from 'vue'
 import vue3Carousel from './ui/vue3Carousel.vue'
-// import swiper from './ui/swiperCarousel.vue'
 export default {
   props: {
     salesRequest: {
@@ -58,6 +57,7 @@ export default {
     }
   },
   components: { vue3Carousel },
+
   setup (props) {
     const productsTabsTitle = ([
       { title: 'Beer' },
@@ -70,6 +70,7 @@ export default {
 
     const productList = ref()
     const selectedIndex = ref(0)
+    const showMore = ref(false)
 
     watch(props, val => {
       productList.value = props.salesRequest[selectedIndex.value]
@@ -80,7 +81,7 @@ export default {
       productList.value = props.salesRequest[selectedIndex.value]
     }
 
-    return { productsTabsTitle, selectedIndex, tabsToggle, productList }
+    return { productsTabsTitle, selectedIndex, tabsToggle, productList, showMore }
   }
 }
 </script>
