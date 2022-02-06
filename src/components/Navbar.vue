@@ -14,7 +14,7 @@
       </a>
       <a class="header-info" href="#">
         <img class="header-info__img" src="@/assets/img/icons/geopoint.svg" alt="geopoint" />
-        <span class="header-info__text">London, Lewisham St. 35</span>
+        <span class="header-info__text">New York City, 7th Ave</span>
       </a>
 
       <ul class="user-list">

@@ -17,9 +17,9 @@
               посмотреть товар
             </p>
             <img class="product-item__img" :src="require(`@/assets/img/products/sale/${p.img}`)" alt="popular">
-            <h3 class="product-item__title">{{ p.title }} {{ p.id }}
+            <h3 class="product-item__title">{{ p.title }}
             </h3>
-            <p class="product-item__price">{{ p.price }}</p>
+            <p class="product-item__price">{{ p.price }} $</p>
             <p class="product-item__notify-text">
               Sold out
             </p>

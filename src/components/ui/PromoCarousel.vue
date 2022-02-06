@@ -18,8 +18,8 @@
             <span class="promo-sale__badge-text">sale</span>
           </div>
           <div class="promo-sale__price">
-            <span class="promo-sale__price-new">£11.99</span>
-            <span class="promo-sale__price-old">£15.99</span>
+            <span class="promo-sale__price-new">7.99$</span>
+            <span class="promo-sale__price-old">10.99$</span>
           </div>
         </div>
         <img class="promo-sale__img" src="@/assets/img/promo_sale_image.png" alt="promo sale">

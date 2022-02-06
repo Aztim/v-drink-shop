@@ -3,9 +3,19 @@
     <PromoCarousel />
     <SearchFilter />
     <Categories />
-    <SliderSection :salesRequest="salesRequest" title="BEST SELLERS" />
+    <SliderSection
+    :salesRequest="salesRequest"
+    :productsTabs="productsTabs"
+    title="BEST SELLERS">
+      <!-- <template #show> -->
+        <button class="products__link-more">show more</button>
+      <!-- </template> -->
+    </SliderSection>
     <Banner />
-    <!-- <SliderSection  title="RELATED PRODUCTS" :link="false" /> -->
+    <SliderSection
+    title="RELATED PRODUCTS"
+    :productsTabs="accessoriesTabs"
+    :link="false" />
   </div>
 </template>
 
@@ -35,9 +45,23 @@ export default {
     })
     const salesRequest = computed(() => store.getters['request/requests'])
     // const test = Object.keys(salesRequest.value).map(id => ({ ...salesRequest.value[id], id }))
-    return {
-      salesRequest
-    }
+
+    const productsTabs = ([
+      { title: 'Beer' },
+      { title: 'Cider' },
+      { title: 'Gin' },
+      { title: 'Liqueur' },
+      { title: 'Vodka' },
+      { title: 'Whiskey' }
+    ])
+
+    const accessoriesTabs = ([
+      { title: 'Glasses' },
+      { title: 'Shakers' },
+      { title: 'Barrels' },
+      { title: 'Stones' }
+    ])
+    return { salesRequest, productsTabs, accessoriesTabs }
   }
 
 }

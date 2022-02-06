@@ -8,7 +8,7 @@
           <div class="mobile-overflow">
             <div
               class="products-tabs__title popular-tabs__title"
-              v-for="(p, index) in productsTabsTitle"
+              v-for="(p, index) in productsTabs"
               :key="p.title"
               :class="index === selectedIndex ? 'active' : null"
               @click="tabsToggle(index)"
@@ -30,9 +30,8 @@
       </div>
 
       <div class="products__link">
-        <a class="products__link-more" href="#">show more</a>
+        <slot />
       </div>
-
     </div>
   </div>
 </section>
@@ -47,27 +46,18 @@ export default {
       type: Array,
       required: true
     },
+    productsTabs: {
+      type: Array,
+      required: true
+    },
     title: {
       type: String,
       required: true
-    },
-    link: {
-      type: Boolean,
-      default: true
     }
   },
   components: { vue3Carousel },
 
   setup (props) {
-    const productsTabsTitle = ([
-      { title: 'Beer' },
-      { title: 'Cider' },
-      { title: 'Gin' },
-      { title: 'Liqueur' },
-      { title: 'Vodka' },
-      { title: 'Whiskey' }
-    ])
-
     const productList = ref()
     const selectedIndex = ref(0)
     const showMore = ref(false)
@@ -81,7 +71,7 @@ export default {
       productList.value = props.salesRequest[selectedIndex.value]
     }
 
-    return { productsTabsTitle, selectedIndex, tabsToggle, productList, showMore }
+    return { selectedIndex, tabsToggle, productList, showMore }
   }
 }
 </script>
