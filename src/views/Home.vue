@@ -4,18 +4,17 @@
     <SearchFilter />
     <Categories />
     <SliderSection
-    :salesRequest="salesRequest"
-    :productsTabs="productsTabs"
-    title="BEST SELLERS">
-      <!-- <template #show> -->
+      :salesRequest="salesRequest"
+      :productsTabs="productsTabs"
+      title="BEST SELLERS">
         <button class="products__link-more">show more</button>
-      <!-- </template> -->
     </SliderSection>
     <Banner />
     <SliderSection
-    title="RELATED PRODUCTS"
-    :productsTabs="accessoriesTabs"
-    :link="false" />
+      :salesRequest="salesRequest"
+      title="RELATED PRODUCTS"
+      :productsTabs="accessoriesTabs"
+    />
   </div>
 </template>
 
@@ -44,6 +43,7 @@ export default {
       await store.dispatch('request/load')
     })
     const salesRequest = computed(() => store.getters['request/requests'])
+
     // const test = Object.keys(salesRequest.value).map(id => ({ ...salesRequest.value[id], id }))
 
     const productsTabs = ([

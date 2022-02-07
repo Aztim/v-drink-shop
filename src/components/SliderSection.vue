@@ -24,6 +24,7 @@
               <vue3Carousel
                 :productList="productList"
               />
+
             </div>
           </div>
         </div>
@@ -60,8 +61,6 @@ export default {
   setup (props) {
     const productList = ref()
     const selectedIndex = ref(0)
-    const showMore = ref(false)
-
     watch(props, val => {
       productList.value = props.salesRequest[selectedIndex.value]
     })
@@ -71,7 +70,7 @@ export default {
       productList.value = props.salesRequest[selectedIndex.value]
     }
 
-    return { selectedIndex, tabsToggle, productList, showMore }
+    return { selectedIndex, tabsToggle, productList }
   }
 }
 </script>

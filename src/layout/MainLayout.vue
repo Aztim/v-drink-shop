@@ -1,12 +1,25 @@
 <template>
   <div>
+    <PopUpWindow  :hidePopup="hidePopup" @close="hidePopup = true"/>
     <router-view />
   </div>
 </template>
 
 <script>
+import PopUpWindow from '../components/ui/ PopUpWindow.vue'
+import { onMounted, ref } from 'vue'
 export default {
-  components: { }
+  components: { PopUpWindow },
+  setup () {
+    const hidePopup = ref(true)
+    onMounted(() => {
+      setTimeout(() => {
+        hidePopup.value = false
+      }, 1000)
+    })
+
+    return { hidePopup }
+  }
 }
 </script>
 

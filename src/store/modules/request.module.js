@@ -11,8 +11,8 @@ export default {
   },
 
   mutations: {
-    setRequests (state, requests) {
-      state.requests = requests
+    setRequests (state, requests1) {
+      state.requests = requests1
     }
   },
 
@@ -20,7 +20,13 @@ export default {
     async load ({ commit, dispatch }) {
       try {
         const { data } = await axios.get('https://vue-drink-shop-default-rtdb.firebaseio.com/sale.json')
-        // const requests = Object.keys(data).map(id => ({ ...data[id], id }))
+        // const { data } = await axios.get('https://vue-drink-shop-default-rtdb.firebaseio.com/accessories.json')
+
+        // const [data1, data2] = await Promise.all([
+        //   axios.get('https://vue-drink-shop-default-rtdb.firebaseio.com/sale.json'),
+        //   axios.get('https://vue-drink-shop-default-rtdb.firebaseio.com/accessories.json')
+        // ])
+        // const requests = Object.keys(data1).map(id => ({ ...data1[id] }))
         const requests = Object.keys(data).map(id => ({ ...data[id] }))
         commit('setRequests', requests)
       } catch (e) {

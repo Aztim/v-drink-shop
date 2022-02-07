@@ -4,7 +4,6 @@
       <div class="product-slider__item" >
         <div class="product-item__wrapper" :class="{ 'product-item__not-available': p.sold }"></div>
         <div class="product-item__wrapper" >
-          <!-- <button class="product-item__favourite" type="button" :class="{'product-item__favourite--active': test(p.id)}" @click="addToFavorite(p.id)"></button> -->
           <FavoriteButton :id="p.id" />
           <button class="product-item__basket" type="button">
             <img src="@/assets/img/icons/basket_white.svg" alt="basket">
@@ -19,7 +18,7 @@
             <img class="product-item__img" :src="require(`@/assets/img/products/sale/${p.img}`)" alt="popular">
             <h3 class="product-item__title">{{ p.title }}
             </h3>
-            <p class="product-item__price">{{ p.price }} $</p>
+            <p class="product-item__price">{{ p.price }} {{ productList.price }}$</p>
             <p class="product-item__notify-text">
               Sold out
             </p>
@@ -42,7 +41,12 @@ export default {
   props: ['productList'],
   components: { Carousel, Slide, Navigation, FavoriteButton },
   setup () {
-    return { }
+    // const test = ref()
+    // watch(props, val => {
+    //   test.value = props.productList.filter((t) => (t.type === props.selectedIndex))
+    //   console.log(test.value)
+    // })
+    // return { test }
   }
 }
 </script>
