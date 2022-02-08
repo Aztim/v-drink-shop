@@ -4,9 +4,9 @@
     <div class="promo__wrapper">
       <div class="promo-slider" id="promo-slider">
         <Splide :options="{ rewind: true }">
-          <SplideSlide v-for="p in promoSliderList" :key="p.src">
+          <SplideSlide v-for="a in advert" :key="a.src">
             <router-link class="promo-slider__item" to="/">
-              <img class="promo-slider__img" :src="require(`@/assets/img/${p.src}`)" alt="promo banner">
+              <img class="promo-slider__img" :src="require(`@/assets/img/products/advert/${a.img}`)" alt="promo banner">
             </router-link>
           </SplideSlide>
         </Splide>
@@ -34,12 +34,19 @@
 </template>
 
 <script>
+import { ref, watch } from 'vue'
 import { Splide, SplideSlide } from '@splidejs/vue-splide'
 import '@splidejs/splide/dist/css/themes/splide-default.min.css'
 
 export default {
+  props: {
+    advert_data: {
+      type: Object,
+      required: true
+    }
+  },
   components: { Splide, SplideSlide },
-  setup () {
+  setup (props) {
     const promoSliderList = ([
       { src: 'main_banner.jpg', to: '/' },
       { src: 'main_banner.jpg', to: '/' },
@@ -47,7 +54,13 @@ export default {
       { src: 'main_banner.jpg', to: '/' }
     ])
 
-    return { promoSliderList }
+    const advert = ref()
+    watch(props, val => {
+      advert.value = Object.keys(props.advert_data).map(id => ({ ...props.advert_data[id], id }))
+      // console.log(img)
+    })
+
+    return { promoSliderList, advert }
   }
 }
 </script>

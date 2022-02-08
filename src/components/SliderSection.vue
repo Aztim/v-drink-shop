@@ -44,7 +44,7 @@ import vue3Carousel from './ui/vue3Carousel.vue'
 export default {
   props: {
     salesRequest: {
-      type: Array,
+      type: Object,
       required: true
     },
     productsTabs: {
@@ -61,13 +61,15 @@ export default {
   setup (props) {
     const productList = ref()
     const selectedIndex = ref(0)
+    const tmp = ref()
     watch(props, val => {
-      productList.value = props.salesRequest[selectedIndex.value]
+      tmp.value = Object.keys(props.salesRequest).map(id => ({ ...props.salesRequest[id] }))
+      productList.value = tmp.value[selectedIndex.value]
     })
 
     const tabsToggle = (id) => {
       selectedIndex.value = id
-      productList.value = props.salesRequest[selectedIndex.value]
+      productList.value = tmp.value[selectedIndex.value]
     }
 
     return { selectedIndex, tabsToggle, productList }

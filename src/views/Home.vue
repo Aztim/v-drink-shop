@@ -1,17 +1,17 @@
 <template>
   <div>
-    <PromoCarousel />
+    <PromoCarousel :advert_data="salesRequest.advert" />
     <SearchFilter />
     <Categories />
     <SliderSection
-      :salesRequest="salesRequest"
+      :salesRequest="salesRequest.sale"
       :productsTabs="productsTabs"
       title="BEST SELLERS">
         <button class="products__link-more">show more</button>
     </SliderSection>
     <Banner />
     <SliderSection
-      :salesRequest="salesRequest"
+      :salesRequest="salesRequest.accessories"
       title="RELATED PRODUCTS"
       :productsTabs="accessoriesTabs"
     />
@@ -44,8 +44,6 @@ export default {
     })
     const salesRequest = computed(() => store.getters['request/requests'])
 
-    // const test = Object.keys(salesRequest.value).map(id => ({ ...salesRequest.value[id], id }))
-
     const productsTabs = ([
       { title: 'Beer' },
       { title: 'Cider' },
@@ -56,12 +54,12 @@ export default {
     ])
 
     const accessoriesTabs = ([
+      { title: 'Barrels' },
       { title: 'Glasses' },
       { title: 'Shakers' },
-      { title: 'Barrels' },
       { title: 'Stones' }
     ])
-    return { salesRequest, productsTabs, accessoriesTabs }
+    return { productsTabs, accessoriesTabs, salesRequest }
   }
 
 }

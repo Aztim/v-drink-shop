@@ -19,16 +19,17 @@ export default {
   actions: {
     async load ({ commit, dispatch }) {
       try {
-        const { data } = await axios.get('https://vue-drink-shop-default-rtdb.firebaseio.com/sale.json')
+        const { data } = await axios.get('https://vue-drink-shop-default-rtdb.firebaseio.com/sales_product.json')
+        // const { data } = await axios.get('https://vue-drink-shop-default-rtdb.firebaseio.com/sale.json')
         // const { data } = await axios.get('https://vue-drink-shop-default-rtdb.firebaseio.com/accessories.json')
 
         // const [data1, data2] = await Promise.all([
         //   axios.get('https://vue-drink-shop-default-rtdb.firebaseio.com/sale.json'),
         //   axios.get('https://vue-drink-shop-default-rtdb.firebaseio.com/accessories.json')
         // ])
-        // const requests = Object.keys(data1).map(id => ({ ...data1[id] }))
-        const requests = Object.keys(data).map(id => ({ ...data[id] }))
-        commit('setRequests', requests)
+        // const requests = Object.keys(data).map(id => ({ ...data[id] }))
+
+        commit('setRequests', data)
       } catch (e) {
         // dispatch('setMessage', {
         //   value: e.message,
