@@ -22,7 +22,7 @@
         class="user-list__item"
         v-for="u in userList"
         :key="u.alt">
-          <a class="user-list__link" href="#">
+          <a class="user-list__link">
             <img class="user-list__img" :src="require(`@/assets/img/icons/${u.src}`)" :alt="u.alt" />
           </a>
         </li>
@@ -48,13 +48,14 @@
     <div class="header__bottom">
       <div class="container">
         <nav class="menu-categories">
-          <a
+          <router-link
           v-for="c in categoriesList"
           :key="c.text" class="menu-categories__link"
           :class="c.class"
-          href="#">
+          :to="{name: 'Catalog', params: {type: c.text.toLowerCase() }}"
+          >
             {{ c.text }}
-          </a>
+          </router-link>
         </nav>
       </div>
     </div>
@@ -74,7 +75,7 @@ export default {
     ])
 
     const categoriesList = ([
-      { text: 'Wine', class: 'menu-categories__link--active' },
+      { text: 'Vodka', class: 'menu-categories__link--active' },
       { text: 'Liqueur' },
       { text: 'Beer' },
       { text: 'Cider' },

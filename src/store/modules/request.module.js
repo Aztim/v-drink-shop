@@ -20,8 +20,6 @@ export default {
     async load ({ commit, dispatch }) {
       try {
         const { data } = await axios.get('https://vue-drink-shop-default-rtdb.firebaseio.com/sales_product.json')
-        // const { data } = await axios.get('https://vue-drink-shop-default-rtdb.firebaseio.com/sale.json')
-        // const { data } = await axios.get('https://vue-drink-shop-default-rtdb.firebaseio.com/accessories.json')
 
         // const [data1, data2] = await Promise.all([
         //   axios.get('https://vue-drink-shop-default-rtdb.firebaseio.com/sale.json'),
@@ -30,6 +28,30 @@ export default {
         // const requests = Object.keys(data).map(id => ({ ...data[id] }))
 
         commit('setRequests', data)
+      } catch (e) {
+        // dispatch('setMessage', {
+        //   value: e.message,
+        //   type: 'danger'
+        // }, { root: true })
+      }
+    },
+
+    async loadItem ({ commit, dispatch }, id) {
+      try {
+        const { data } = await axios.get(`https://vue-drink-shop-default-rtdb.firebaseio.com/products/${id}.json`)
+        return data
+      } catch (e) {
+        // dispatch('setMessage', {
+        //   value: e.message,
+        //   type: 'danger'
+        // }, { root: true })
+      }
+    },
+
+    async loadProducts ({ commit, dispatch }, type) {
+      try {
+        const { data } = await axios.get(`https://vue-drink-shop-default-rtdb.firebaseio.com/products/${type}.json`)
+        return data
       } catch (e) {
         // dispatch('setMessage', {
         //   value: e.message,

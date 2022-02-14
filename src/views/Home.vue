@@ -55,7 +55,7 @@ export default {
 
     const accessoriesTabs = ([
       { title: 'Barrels' },
-      { title: 'Glasses' },
+      { title: 'Games' },
       { title: 'Shakers' },
       { title: 'Stones' }
     ])

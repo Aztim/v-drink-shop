@@ -272,6 +272,10 @@
 </template>
 
 <script>
+import { ref, onMounted } from 'vue'
+import { useStore } from 'vuex'
+import { useRoute } from 'vue-router'
+
 export default {
   setup () {
     const catalogList = ([
@@ -289,11 +293,24 @@ export default {
       { img: 'jameson.png', title: 'JAMESON BLACK BARREL', price: '£36.99', class: '' }
     ])
 
+    const request = ref({})
+    const route = useRoute()
+    const store = useStore()
+
+    onMounted(async () => {
+      // console.log(route.path)
+      // loading.value = true
+      // const { type, id } = route.params
+      request.value = await store.dispatch('request/loadProducts', route.params.type)
+
+      // request.value = await store.dispatch('request/loadItem', `${type}/${id}`)
+      // loading.value = false
+    })
     // const paginationList = ({
     //   {}
     // })
 
-    return { catalogList }
+    return { catalogList, request }
   }
 }
 </script>

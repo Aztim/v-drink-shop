@@ -11,17 +11,17 @@ const routes = [
     }
   },
   {
-    path: '/test',
-    name: 'ProductItem',
-    component: () => import('../components/ProductItem.vue'),
+    path: '/catalog/:id',
+    name: 'Catalogtem',
+    component: () => import('../views/Catalogtem.vue'),
     meta: {
       layout: 'main'
     }
   },
   {
-    path: '/catalog',
+    path: '/:type',
     name: 'Catalog',
-    component: () => import('../components/Catalog.vue'),
+    component: () => import('../views/Catalog.vue'),
     meta: {
       layout: 'main'
     }
@@ -30,7 +30,10 @@ const routes = [
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes
+  routes,
+  scrollBehavior (to, from, savedPosition) {
+    return savedPosition || { top: 0 }
+  }
 })
 
 export default router

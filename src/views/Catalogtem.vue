@@ -18,13 +18,14 @@
 <section class="product-card">
   <div class="container">
     <div class="product-card__wrapper">
-      <div class="product-card__img-box product-card__sale">
-        <img class="product-card__image" :src="productData.img" alt="product">
-        <p class="product-card__price-old">
-          £{{productData.oldPrice}}
-        </p>
+      <div class="product-card__img-box" :class="{'product-item__sale': request.sale, 'product-item__new': request.new }">
+        <!-- <img class="product-card__image" src="@/assets/img/products/list/whitley_blue.jpg" alt="product"> -->
+        <img class="product-card__image" :src="productImage(request)"  alt="product">
+        <!-- <p class="product-card__price-old">
+          ${{productData.oldPrice}}
+        </p> -->
         <p class="product-card__price-new">
-          £{{productData.priceNew}}
+          ${{request.price}}
         </p>
         <a class="product-card__price-link" href="#">
           Found cheaper? We will decrease the price
@@ -32,11 +33,11 @@
       </div>
       <div class="product-card__content">
         <h1 class="product-card__title">
-          {{ productData.title }}
+          {{ request.title }}
         </h1>
-        <p class="product-card__vendor">
+        <!-- <p class="product-card__vendor">
           SKU: {{ productData.sku }}
-        </p>
+        </p> -->
         <div class="product-card__actions">
           <button class="product-card__actions-favorite" type="button">
             <img src="@/assets/img/icons/heart.svg" alt="favorite">
@@ -57,7 +58,7 @@
           <div class="product-card__tabs-content-header">
             <div class="product-card__tabs-content-item active">
                <ul class="product-card__list" >
-                <li class="product-card__item" v-for="(key, value ) in productData.card__list" :key="value">
+                <li class="product-card__item" v-for="(key, value ) in request.card_list" :key="value">
                   <div class="product-card__item-left">{{ value }}</div>
                   <div class="product-card__item-right">{{ key }}</div>
                 </li>
@@ -65,7 +66,7 @@
             </div>
             <div class="product-card__tabs-content-item">Where to buy</div>
           </div>
-          <a class="product-card__more" href="#">Show more</a>
+          <a class="product-card__more" href="#"  @click="isOpen = !isOpen">Show more</a>
           <div class="product-card__buy">
             <button type="button">add to cart</button>
           </div>
@@ -142,8 +143,19 @@
 </template>
 
 <script>
+// import Loader from '../components/ui/Loader.vue'
+import { ref, onMounted } from 'vue'
+import { useStore } from 'vuex'
+import { useRoute } from 'vue-router'
+
 export default {
+  components: {
+  },
   setup () {
+    const route = useRoute()
+    const store = useStore()
+    const isOpen = ref(false)
+
     const productData = (
       {
         img: require('@/assets/img/products/jameson.png'),
@@ -161,7 +173,6 @@ export default {
           }
       }
     )
-
     const pageTabs = {
       tab1: 'Details',
       tab2: 'Reviews',
@@ -171,29 +182,44 @@ export default {
     }
     const addressList = [
       {
-        address: 'London, Lewisham St. 35',
+        address: 'New York City, 8th Ave',
         hours: '7am – 6pm',
         sunHours: '8am – 1pm',
         availability: 'In-Stock',
         quantity: 1
       },
       {
-        address: 'London, Lewisham St. 40',
+        address: 'New York City, 9th Ave',
         hours: '7am – 6pm',
         sunHours: '8am – 1pm',
         availability: 'In-Stock',
         quantity: 2
       },
       {
-        address: 'London, Lewisham St. 50',
+        address: 'New York City, 10th Ave',
         hours: '7am – 6pm',
         sunHours: '8am – 1pm',
         availability: 'Out-Stock',
         quantity: 0
       }
     ]
+    const request = ref({})
 
-    return { productData, pageTabs, addressList }
+    onMounted(async () => {
+      // loading.value = true
+      // const { type, id } = route.params
+      request.value = await store.dispatch('request/loadItem', route.params.id)
+      // request.value = await store.dispatch('request/loadItem', `${type}/${id}`)
+      // loading.value = false
+    })
+
+    const productImage = (request) => {
+      if (!request.img) {
+        return require('@/assets/img/empty.png')
+      }
+      return require('@/assets/img/products/list/' + request.img)
+    }
+    return { productData, pageTabs, addressList, request, productImage, isOpen }
   }
 }
 </script>
