@@ -9,9 +9,12 @@
       </nav>
 
       <a class="logo" href="#">
-        <img class="logo__img" src="@/assets/img/icons/logo.svg" alt="logo" />
+        <router-link to="/">
+          <img class="logo__img" src="@/assets/img/icons/logo.svg" alt="logo" />
+        </router-link>
         <img class="logo__img-mobile" src="@/assets/img/icons/logo-mobile.svg" alt="logo mobile" />
       </a>
+
       <a class="header-info" href="#">
         <img class="header-info__img" src="@/assets/img/icons/geopoint.svg" alt="geopoint" />
         <span class="header-info__text">New York City, 7th Ave</span>
@@ -52,9 +55,9 @@
           v-for="c in categoriesList"
           :key="c.text" class="menu-categories__link"
           :class="c.class"
-          :to="{name: 'Catalog', params: {type: c.text.toLowerCase() }}"
+          :to="{name: 'Catalog', params: {slug: c.slug }}"
           >
-            {{ c.text }}
+            {{ c.name }}
           </router-link>
         </nav>
       </div>
@@ -75,12 +78,12 @@ export default {
     ])
 
     const categoriesList = ([
-      { text: 'Vodka', class: 'menu-categories__link--active' },
-      { text: 'Liqueur' },
-      { text: 'Beer' },
-      { text: 'Cider' },
-      { text: 'Gin' },
-      { text: 'Whiskey' }
+      { name: 'Vodka', slug: 'vodka', class: 'menu-categories__link--active' },
+      { name: 'Liqueur', slug: 'liqueur' },
+      { name: 'Beer', slug: 'beer' },
+      { name: 'Cider', slug: 'cider' },
+      { name: 'Gin', slug: 'gin' },
+      { name: 'Whiskey', slug: 'whiskey' }
     ])
 
     return { userList, categoriesList }

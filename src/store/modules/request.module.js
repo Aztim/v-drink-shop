@@ -5,14 +5,20 @@ export default {
   state () {
     return {
       requests: [],
-      tasks: [
-      ]
+      products: [],
+      oneProduct: []
     }
   },
 
   mutations: {
     setRequests (state, requests1) {
       state.requests = requests1
+    },
+    setProducts (state, requests2) {
+      state.products = requests2
+    },
+    setProductById (state, requests3) {
+      state.oneProduct = requests3
     }
   },
 
@@ -36,10 +42,11 @@ export default {
       }
     },
 
-    async loadItem ({ commit, dispatch }, id) {
+    async loadItemById ({ commit, dispatch }, params) {
+      const { slug, id } = params
       try {
-        const { data } = await axios.get(`https://vue-drink-shop-default-rtdb.firebaseio.com/products/${id}.json`)
-        return data
+        const { data } = await axios.get(`https://vue-drink-shop-default-rtdb.firebaseio.com/products/${slug}/${id}.json`)
+        commit('setProductById', data)
       } catch (e) {
         // dispatch('setMessage', {
         //   value: e.message,
@@ -48,10 +55,10 @@ export default {
       }
     },
 
-    async loadProducts ({ commit, dispatch }, type) {
+    async loadProductsByType ({ commit, dispatch }, slug) {
       try {
-        const { data } = await axios.get(`https://vue-drink-shop-default-rtdb.firebaseio.com/products/${type}.json`)
-        return data
+        const { data } = await axios.get(`https://vue-drink-shop-default-rtdb.firebaseio.com/products/${slug}.json`)
+        commit('setProducts', data)
       } catch (e) {
         // dispatch('setMessage', {
         //   value: e.message,
@@ -63,6 +70,12 @@ export default {
   getters: {
     requests (state) {
       return state.requests
+    },
+    products (state) {
+      return state.products
+    },
+    oneProduct (state) {
+      return state.oneProduct
     }
   }
 }

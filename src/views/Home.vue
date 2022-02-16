@@ -3,18 +3,18 @@
     <PromoCarousel :advert_data="salesRequest.advert" />
     <SearchFilter />
     <Categories />
-    <SliderSection
+    <!-- <SliderSection
       :salesRequest="salesRequest.sale"
       :productsTabs="productsTabs"
       title="BEST SELLERS">
         <button class="products__link-more">show more</button>
-    </SliderSection>
+    </SliderSection> -->
     <Banner />
-    <SliderSection
+    <!-- <SliderSection
       :salesRequest="salesRequest.accessories"
       title="RELATED PRODUCTS"
       :productsTabs="accessoriesTabs"
-    />
+    /> -->
   </div>
 </template>
 
@@ -24,7 +24,7 @@ import { useStore } from 'vuex'
 import PromoCarousel from '@/components/ui/PromoCarousel.vue'
 import SearchFilter from '@/components/SearchFilter.vue'
 import Categories from '@/components/Categories.vue'
-import SliderSection from '@/components/SliderSection.vue'
+// import SliderSection from '@/components/SliderSection.vue'
 import Banner from '@/components/ui/Banner.vue'
 
 export default {
@@ -33,7 +33,7 @@ export default {
     PromoCarousel,
     SearchFilter,
     Categories,
-    SliderSection,
+    // SliderSection,
     Banner
   },
 
@@ -54,9 +54,9 @@ export default {
     ])
 
     const accessoriesTabs = ([
-      { title: 'Barrels' },
-      { title: 'Games' },
       { title: 'Shakers' },
+      { title: 'Barrels' },
+      { title: 'Flask' },
       { title: 'Stones' }
     ])
     return { productsTabs, accessoriesTabs, salesRequest }

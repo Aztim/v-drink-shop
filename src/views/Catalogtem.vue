@@ -18,14 +18,15 @@
 <section class="product-card">
   <div class="container">
     <div class="product-card__wrapper">
-      <div class="product-card__img-box" :class="{'product-item__sale': request.sale, 'product-item__new': request.new }">
+      <!-- <div class="product-card__img-box" :class="{'product-item__sale': product.sale, 'product-item__new': product.new }"> -->
+      <div class="product-card__img-box" >
         <!-- <img class="product-card__image" src="@/assets/img/products/list/whitley_blue.jpg" alt="product"> -->
-        <img class="product-card__image" :src="productImage(request)"  alt="product">
+        <img class="product-card__image" :src="productImage(product.img)"  alt="product">
         <!-- <p class="product-card__price-old">
           ${{productData.oldPrice}}
         </p> -->
         <p class="product-card__price-new">
-          ${{request.price}}
+          ${{product.price}}
         </p>
         <a class="product-card__price-link" href="#">
           Found cheaper? We will decrease the price
@@ -33,7 +34,7 @@
       </div>
       <div class="product-card__content">
         <h1 class="product-card__title">
-          {{ request.title }}
+          {{ product.title }}
         </h1>
         <!-- <p class="product-card__vendor">
           SKU: {{ productData.sku }}
@@ -58,7 +59,7 @@
           <div class="product-card__tabs-content-header">
             <div class="product-card__tabs-content-item active">
                <ul class="product-card__list" >
-                <li class="product-card__item" v-for="(key, value ) in request.card_list" :key="value">
+                <li class="product-card__item" v-for="(key, value ) in product.card_list" :key="value">
                   <div class="product-card__item-left">{{ value }}</div>
                   <div class="product-card__item-right">{{ key }}</div>
                 </li>
@@ -144,7 +145,7 @@
 
 <script>
 // import Loader from '../components/ui/Loader.vue'
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import { useStore } from 'vuex'
 import { useRoute } from 'vue-router'
 
@@ -203,23 +204,24 @@ export default {
         quantity: 0
       }
     ]
-    const request = ref({})
 
     onMounted(async () => {
       // loading.value = true
       // const { type, id } = route.params
-      request.value = await store.dispatch('request/loadItem', route.params.id)
-      // request.value = await store.dispatch('request/loadItem', `${type}/${id}`)
+      await store.dispatch('request/loadItemById', route.params)
+      // product.value = await store.dispatch('product/loadItem', `${type}/${id}`)
       // loading.value = false
     })
 
-    const productImage = (request) => {
-      if (!request.img) {
+    const product = computed(() => store.getters['request/oneProduct'])
+    console.log(product)
+    const productImage = (img) => {
+      if (!img) {
         return require('@/assets/img/empty.png')
       }
-      return require('@/assets/img/products/list/' + request.img)
+      return require('@/assets/img/products/' + img)
     }
-    return { productData, pageTabs, addressList, request, productImage, isOpen }
+    return { productData, pageTabs, addressList, product, productImage, isOpen }
   }
 }
 </script>

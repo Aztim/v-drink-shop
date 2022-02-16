@@ -6,22 +6,27 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home,
+    props: true,
     meta: {
       layout: 'main'
     }
   },
+
   {
-    path: '/catalog/:id',
-    name: 'Catalogtem',
-    component: () => import('../views/Catalogtem.vue'),
-    meta: {
-      layout: 'main'
-    }
-  },
-  {
-    path: '/:type',
+    path: '/catalog/:slug',
     name: 'Catalog',
     component: () => import('../views/Catalog.vue'),
+    props: true,
+    meta: {
+      layout: 'main'
+    }
+  },
+
+  {
+    path: '/catalog/:slug/:id',
+    name: 'Catalogtem',
+    component: () => import('../views/Catalogtem.vue'),
+    props: true,
     meta: {
       layout: 'main'
     }

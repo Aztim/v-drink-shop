@@ -231,7 +231,7 @@
       <div class="catalog__wrapper-list">
         <div
           class="product-item__wrapper"
-          v-for="c in catalogList"
+          v-for="c in cList"
           :key=c.title
         >
           <button class="product-item__favourite" type="button"></button>
@@ -272,12 +272,18 @@
 </template>
 
 <script>
-import { ref, onMounted } from 'vue'
+import { ref, watch, computed, onMounted } from 'vue'
 import { useStore } from 'vuex'
 import { useRoute } from 'vue-router'
 
 export default {
-  setup () {
+  props: {
+    slug: {
+      type: String,
+      required: true
+    }
+  },
+  setup (props) {
     const catalogList = ([
       { img: 'jameson.png', title: 'JAMESON BLACK BARREL', price: '£36.99', class: '' },
       { img: 'jameson.png', title: 'JAMESON BLACK BARREL', price: '£36.99', class: 'product-item__sale' },
@@ -297,20 +303,29 @@ export default {
     const route = useRoute()
     const store = useStore()
 
-    onMounted(async () => {
-      // console.log(route.path)
-      // loading.value = true
-      // const { type, id } = route.params
-      request.value = await store.dispatch('request/loadProducts', route.params.type)
+    const initDate = async (slug) => { await store.dispatch('request/loadProductsByType', slug) }
 
-      // request.value = await store.dispatch('request/loadItem', `${type}/${id}`)
-      // loading.value = false
+    onMounted(async () => {
+      initDate(route.params.slug)
     })
+
+    watch(() => route.params, values => {
+      initDate(values.slug)
+    })
+    const cList = computed(() => store.getters['request/products'])
+
+    // loading.value = true
+    // const { type, id } = route.params
+
+    // request.value = await store.dispatch('request/loadProducts', route.params.type)
+
+    // request.value = await store.dispatch('request/loadItem', `${type}/${id}`)
+    // loading.value = false
+    // })
     // const paginationList = ({
     //   {}
     // })
-
-    return { catalogList, request }
+    return { catalogList, request, cList }
   }
 }
 </script>

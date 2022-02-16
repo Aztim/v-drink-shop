@@ -15,13 +15,13 @@
             <router-link
               class="product-item"
               :class="{'product-item__sale': p.sale, 'product-item__new': p.new }"
-              :to="{name: 'Catalogtem', params: {id: p.id}}"
-              href="#">
+              :to="{name: 'Catalogtem', params: {id: `${p.type}/${p.id}`}}"
+              >
               <p class="product-item__hover-text">
                 посмотреть товар
               </p>
-              <img class="product-item__img" :src="require(`@/assets/img/products/sale/${p.img}`)" alt="popular">
-              <h3 class="product-item__title">{{ p.title }}</h3>
+              <img class="product-item__img" :src="require(`@/assets/img/products/${p.img}`)" alt="popular">
+              <h3 class="product-item__title">{{ p.title }} {{ p.type }}</h3>
               <p class="product-item__price">{{ p.price }} {{ productList.price }}$</p>
               <p class="product-item__notify-text">
                 Sold out
