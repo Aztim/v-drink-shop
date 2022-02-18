@@ -207,9 +207,7 @@ export default {
 
     onMounted(async () => {
       // loading.value = true
-      // const { type, id } = route.params
       await store.dispatch('request/loadItemById', route.params)
-      // product.value = await store.dispatch('product/loadItem', `${type}/${id}`)
       // loading.value = false
     })
 

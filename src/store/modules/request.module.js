@@ -58,7 +58,10 @@ export default {
     async loadProductsByType ({ commit, dispatch }, slug) {
       try {
         const { data } = await axios.get(`https://vue-drink-shop-default-rtdb.firebaseio.com/products/${slug}.json`)
-        commit('setProducts', data)
+        const request = Object.keys(data).map(id => ({ ...data[id], id }))
+        console.log(request)
+
+        commit('setProducts', request)
       } catch (e) {
         // dispatch('setMessage', {
         //   value: e.message,

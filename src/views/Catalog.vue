@@ -238,20 +238,26 @@
           <button class="product-item__basket" type="button">
             <img src="@/assets/img/icons/basket_white.svg" alt="basket">
           </button>
-          <a class="product-item__notify-link" href="#">
+          <!-- <a class="product-item__notify-link" href="#">
             Сообщить о поступлении
-          </a>
-          <a class="product-item" href="#" :class="c.class">
-            <p class="product-item__hover-text">
-              view the product
-            </p>
-            <img class="product-item__img" :src="require(`@/assets/img/products/${c.img}`)" alt="popular">
-            <h3 class="product-item__title">{{ c.title }}</h3>
-            <p class="product-item__price">{{ c.price }}</p>
-            <p class="product-item__notify-text">
-              нет в наличии
-            </p>
-          </a>
+          </a> -->
+          <!-- <a class="product-item" href="#" :class="c.class"> -->
+            <router-link
+              class="product-item"
+              :class="c.class"
+              :to="{name: 'Catalogtem', params: {id: c.id, slug: slug }}"
+            >
+              <p class="product-item__hover-text">
+                view the product
+              </p>
+              <img class="product-item__img" :src="require(`@/assets/img/products/${c.img}`)" alt="popular">
+              <h3 class="product-item__title">{{ c.title }}</h3>
+              <p class="product-item__price">${{ c.price }}</p>
+              <p class="product-item__notify-text">
+                нет в наличии
+              </p>
+            </router-link>
+          <!-- </a> -->
         </div>
 
         <div class="pagination">
