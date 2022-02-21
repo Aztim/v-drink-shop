@@ -21,10 +21,12 @@
         <div class="products-tabs__content-header">
           <div class="products-tabs__content-item popular-tabs__content-item active">
             <div class="product-slider">
-              <vue3Carousel
+              <!-- <vue3Carousel
+                :productList="productList"
+              /> -->
+              <Swiper
                 :productList="productList"
               />
-
             </div>
           </div>
         </div>
@@ -40,7 +42,9 @@
 
 <script>
 import { ref, watch } from 'vue'
-import vue3Carousel from './ui/vue3Carousel.vue'
+// import vue3Carousel from './ui/vue3Carousel.vue'
+import Swiper from './ui/SwiperJs.vue'
+
 export default {
   props: {
     salesRequest: {
@@ -56,7 +60,7 @@ export default {
       required: true
     }
   },
-  components: { vue3Carousel },
+  components: { Swiper },
 
   setup (props) {
     const productList = ref()

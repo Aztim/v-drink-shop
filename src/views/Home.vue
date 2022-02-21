@@ -1,39 +1,39 @@
 <template>
   <div>
-    <PromoCarousel :advert_data="salesRequest.advert" />
+    <Promo :advert_data="salesRequest.advert" />
     <SearchFilter />
     <Categories />
-    <!-- <SliderSection
+    <SliderSection
       :salesRequest="salesRequest.sale"
       :productsTabs="productsTabs"
       title="BEST SELLERS">
-        <button class="products__link-more">show more</button>
-    </SliderSection> -->
+      <button class="products__link-more">show more</button>
+    </SliderSection>
     <Banner />
-    <!-- <SliderSection
+    <SliderSection
       :salesRequest="salesRequest.accessories"
       title="RELATED PRODUCTS"
       :productsTabs="accessoriesTabs"
-    /> -->
+    />
   </div>
 </template>
 
 <script>
 import { onMounted, computed } from 'vue'
 import { useStore } from 'vuex'
-import PromoCarousel from '@/components/ui/PromoCarousel.vue'
-import SearchFilter from '@/components/SearchFilter.vue'
+import Promo from '@/components/ThePromoSection.vue'
+import SearchFilter from '@/components/TheSearchFilter.vue'
 import Categories from '@/components/Categories.vue'
-// import SliderSection from '@/components/SliderSection.vue'
+import SliderSection from '@/components/SliderSection.vue'
 import Banner from '@/components/ui/Banner.vue'
 
 export default {
   name: 'Home',
   components: {
-    PromoCarousel,
+    Promo,
     SearchFilter,
     Categories,
-    // SliderSection,
+    SliderSection,
     Banner
   },
 
@@ -54,10 +54,10 @@ export default {
     ])
 
     const accessoriesTabs = ([
-      { title: 'Shakers' },
-      { title: 'Barrels' },
-      { title: 'Flask' },
-      { title: 'Stones' }
+      { title: 'Shakers' }
+      // { title: 'Barrels' },
+      // { title: 'Flask' },
+      // { title: 'Stones' }
     ])
     return { productsTabs, accessoriesTabs, salesRequest }
   }

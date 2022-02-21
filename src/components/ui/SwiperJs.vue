@@ -1,8 +1,16 @@
 <template>
-
- <carousel :items-to-show="3"  :wrap-around="true">
-    <slide v-for="(p) in productList" :key="p.img">
-        <div class="product-slider__item" >
+   <swiper
+      :slidesPerView='4'
+      :spaceBetween='25'
+      :loop='true'
+      :loopFillGroupWithBlank='true'
+      :pagination='{
+        clickable: true,
+      }'
+      :navigation='true'
+    >
+      <swiper-slide v-for='(p) in productList' :key='p.src'>
+          <div class="product-slider__item" >
           <div class="product-item__wrapper" :class="{ 'product-item__not-available': p.sold }"></div>
           <div class="product-item__wrapper" >
             <FavoriteButton :id="p.id" />
@@ -29,28 +37,33 @@
             </router-link>
           </div>
         </div>
-    </slide>
-    <template #addons>
-      <navigation />
-    </template>
-  </carousel>
+      </swiper-slide>
+    </swiper>
 </template>
 
 <script>
+import { Swiper, SwiperSlide } from 'swiper/vue'
 import FavoriteButton from './FavoritesButton.vue'
-import 'vue3-carousel/dist/carousel.css'
-import { Carousel, Slide, Navigation } from 'vue3-carousel'
+// swiper bundle styles
+import 'swiper/swiper-bundle.min.css'
+
+// swiper core styles
+import 'swiper/swiper.min.css'
+
+// modules styles
+import 'swiper/components/pagination/pagination.min.css'
+import 'swiper/components/navigation/navigation.min.css'
+// import Swiper core and required modules
+import SwiperCore, { Pagination, Navigation } from 'swiper'
+// install Swiper modules
+SwiperCore.use([Pagination, Navigation])
 
 export default {
   props: ['productList'],
-  components: { Carousel, Slide, Navigation, FavoriteButton },
+  components: { Swiper, SwiperSlide, FavoriteButton },
+
   setup () {
-    // const test = ref()
-    // watch(props, val => {
-    //   test.value = props.productList.filter((t) => (t.type === props.selectedIndex))
-    //   console.log(test.value)
-    // })
-    // return { test }
+    return { modules: [Pagination, Navigation] }
   }
 }
 </script>
