@@ -1,5 +1,7 @@
 <template>
   <div>
+    <Loader v-if="loading" />
+    <!-- <PopUpWindow /> -->
     <Promo :advert_data="salesRequest.advert" />
     <SearchFilter />
     <Categories />
@@ -19,13 +21,15 @@
 </template>
 
 <script>
-import { onMounted, computed } from 'vue'
+import { onMounted, computed, ref } from 'vue'
 import { useStore } from 'vuex'
 import Promo from '@/components/ThePromoSection.vue'
 import SearchFilter from '@/components/TheSearchFilter.vue'
-import Categories from '@/components/Categories.vue'
+import Categories from '@/components/TheCategories.vue'
 import SliderSection from '@/components/SliderSection.vue'
 import Banner from '@/components/ui/Banner.vue'
+import Loader from '@/components/ui/Loader1.vue'
+// import PopUpWindow from '@/components/ui/PopUpWindow.vue'
 
 export default {
   name: 'Home',
@@ -34,13 +38,19 @@ export default {
     SearchFilter,
     Categories,
     SliderSection,
-    Banner
+    Banner,
+    Loader
+    // PopUpWindow
   },
 
   setup () {
     const store = useStore()
+    const loading = ref(false)
+
     onMounted(async () => {
+      loading.value = true
       await store.dispatch('request/load')
+      loading.value = false
     })
     const salesRequest = computed(() => store.getters['request/requests'])
 
@@ -59,7 +69,7 @@ export default {
       // { title: 'Flask' },
       // { title: 'Stones' }
     ])
-    return { productsTabs, accessoriesTabs, salesRequest }
+    return { productsTabs, accessoriesTabs, salesRequest, loading }
   }
 
 }

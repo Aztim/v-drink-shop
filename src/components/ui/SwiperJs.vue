@@ -11,7 +11,7 @@
     >
       <swiper-slide v-for='(p) in productList' :key='p.src'>
           <div class="product-slider__item" >
-          <div class="product-item__wrapper" :class="{ 'product-item__not-available': p.sold }"></div>
+          <div class="product-item__wrapper " :class="{ 'product-item__not-available': p.sold }"></div>
           <div class="product-item__wrapper" >
             <FavoriteButton :id="p.id" />
             <button class="product-item__basket" type="button">
@@ -26,7 +26,7 @@
               :to="{name: 'Catalogtem', params: {id: p.id, slug: p.slug }}"
               >
               <p class="product-item__hover-text">
-                посмотреть товар
+                view the product
               </p>
               <img class="product-item__img" :src="require(`@/assets/img/products/${p.img}`)" alt="popular">
               <h3 class="product-item__title">{{ p.title }} {{ p.type }}</h3>

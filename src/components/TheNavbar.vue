@@ -29,22 +29,6 @@
             <img class="user-list__img" :src="require(`@/assets/img/icons/${u.src}`)" :alt="u.alt" />
           </a>
         </li>
-        <!-- <li class="user-list__item">
-          <a class="user-list__link" href="#">
-            <img class="user-list__img" src="@/assets/img/icons/heart.svg" alt="favorites" />
-          </a>
-        </li>
-        <li class="user-list__item">
-          <a class="user-list__link" href="#">
-            <img class="user-list__img" src="@/assets/img/icons/user.svg" alt="user" />
-          </a>
-        </li>
-        <li class="user-list__item">
-          <a class="user-list__link" href="#">
-            <img class="user-list__img" src="@/assets/img/icons/basket.svg" alt="basket" />
-            <span class="user-list__count">1</span>
-          </a>
-        </li> -->
       </ul>
     </div>
 
@@ -53,7 +37,8 @@
         <nav class="menu-categories">
           <router-link
           v-for="c in categoriesList"
-          :key="c.text" class="menu-categories__link"
+          :key="c.text"
+          class="menu-categories__link"
           :class="c.class"
           :to="{name: 'Catalog', params: {slug: c.slug }}"
           >
@@ -78,7 +63,8 @@ export default {
     ])
 
     const categoriesList = ([
-      { name: 'Vodka', slug: 'vodka', class: 'menu-categories__link--active' },
+      // { name: 'Vodka', slug: 'vodka', class: 'menu-categories__link--active' },
+      { name: 'Vodka', slug: 'vodka' },
       { name: 'Liqueur', slug: 'liqueur' },
       { name: 'Beer', slug: 'beer' },
       { name: 'Cider', slug: 'cider' },
