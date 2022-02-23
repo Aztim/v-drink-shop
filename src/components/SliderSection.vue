@@ -32,22 +32,26 @@
         </div>
       </div>
 
-      <div class="products__link">
+      <div class="products__link" >
         <slot />
       </div>
     </div>
-  </div>
+
+</div>
 </section>
 </template>
 
 <script>
 import { ref, watch } from 'vue'
-// import vue3Carousel from './ui/vue3Carousel.vue'
 import Swiper from './ui/SwiperJs.vue'
 
 export default {
   props: {
     salesRequest: {
+      type: Object,
+      required: true
+    },
+    salesAccessories: {
       type: Object,
       required: true
     },
@@ -65,6 +69,7 @@ export default {
   setup (props) {
     const productList = ref()
     const selectedIndex = ref(0)
+    const modal = ref(false)
     const tmp = ref()
     watch(props, val => {
       tmp.value = Object.keys(props.salesRequest).map(id => ({ ...props.salesRequest[id] }))
@@ -76,7 +81,7 @@ export default {
       productList.value = tmp.value[selectedIndex.value]
     }
 
-    return { selectedIndex, tabsToggle, productList }
+    return { selectedIndex, tabsToggle, productList, modal }
   }
 }
 </script>

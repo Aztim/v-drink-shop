@@ -6,10 +6,10 @@
         <a href="#">home</a>
       </li>
       <li class="breadcrumbs__list-item">
-        <a href="#">whiskey</a>
+        <a href="#">{{  breadcrumb }}</a>
       </li>
       <li class="breadcrumbs__list-item">
-        <span>Jameson Black Barrel Irish Whiskey 70cl</span>
+        <span>{{ product.title }}</span>
       </li>
     </ul>
   </div>
@@ -19,9 +19,9 @@
   <div class="container">
     <div class="product-card__wrapper">
       <!-- <div class="product-card__img-box" :class="{'product-item__sale': product.sale, 'product-item__new': product.new }"> -->
-      <div class="product-card__img-box" >
-        <!-- <img class="product-card__image" src="@/assets/img/products/list/whitley_blue.jpg" alt="product"> -->
-        <img class="product-card__image" :src="productImage(product.img)"  alt="product">
+      <Loader class="icon" v-if="loading" />
+      <div class="product-card__img-box" v-else>
+        <img class="product-card__image" :src="productImage(product.img)"  alt="product" >
         <!-- <p class="product-card__price-old">
           ${{productData.oldPrice}}
         </p> -->
@@ -144,18 +144,21 @@
 </template>
 
 <script>
-// import Loader from '../components/ui/Loader.vue'
+import Loader from '@/components/ui/Loader1.vue'
 import { ref, onMounted, computed } from 'vue'
 import { useStore } from 'vuex'
 import { useRoute } from 'vue-router'
 
 export default {
   components: {
+    Loader
   },
   setup () {
     const route = useRoute()
     const store = useStore()
     const isOpen = ref(false)
+    const loading = ref(true)
+    const breadcrumb = ref()
 
     const productData = (
       {
@@ -206,20 +209,20 @@ export default {
     ]
 
     onMounted(async () => {
-      // loading.value = true
+      loading.value = true
+      breadcrumb.value = route.params.slug
       await store.dispatch('request/loadItemById', route.params)
-      // loading.value = false
+      loading.value = false
     })
 
     const product = computed(() => store.getters['request/oneProduct'])
-    console.log(product)
     const productImage = (img) => {
       if (!img) {
         return require('@/assets/img/empty.png')
       }
       return require('@/assets/img/products/' + img)
     }
-    return { productData, pageTabs, addressList, product, productImage, isOpen }
+    return { productData, pageTabs, addressList, product, productImage, isOpen, loading, breadcrumb }
   }
 }
 </script>

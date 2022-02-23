@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div >
     <Loader v-if="loading" />
     <!-- <PopUpWindow /> -->
     <Promo :advert_data="salesRequest.advert" />
@@ -9,9 +9,10 @@
       :salesRequest="salesRequest.sale"
       :productsTabs="productsTabs"
       title="BEST SELLERS">
-      <button class="products__link-more">show more</button>
+      <button class="products__link-more" @click="modal = true">show more</button>
     </SliderSection>
     <Banner />
+    <Brands />
     <SliderSection
       :salesRequest="salesRequest.accessories"
       title="RELATED PRODUCTS"
@@ -30,6 +31,7 @@ import SliderSection from '@/components/SliderSection.vue'
 import Banner from '@/components/ui/Banner.vue'
 import Loader from '@/components/ui/Loader1.vue'
 // import PopUpWindow from '@/components/ui/PopUpWindow.vue'
+import Brands from '@/components/ui/Brands.vue'
 
 export default {
   name: 'Home',
@@ -39,7 +41,8 @@ export default {
     Categories,
     SliderSection,
     Banner,
-    Loader
+    Loader,
+    Brands
     // PopUpWindow
   },
 

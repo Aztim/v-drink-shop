@@ -6,7 +6,7 @@
         <a href="#">Home</a>
       </li>
       <li class="breadcrumbs__list-item">
-        <span>Whiskey</span>
+        <span>{{ capitalLetter(slug) }}</span>
       </li>
     </ul>
   </div>
@@ -15,7 +15,7 @@
 <section class="catalog">
   <div class="container">
     <h2 class="catalog__title">
-      Whiskey
+      {{ capitalLetter(slug) }}
     </h2>
     <div class="catalog__filter">
       <div class="catalog__filter--left">
@@ -308,8 +308,11 @@ export default {
     const request = ref({})
     const route = useRoute()
     const store = useStore()
+    const items = ref([])
 
     const initDate = async (slug) => { await store.dispatch('request/loadProductsByType', slug) }
+
+    const capitalLetter = (s) => s.charAt(0).toUpperCase() + s.slice(1)
 
     onMounted(async () => {
       initDate(route.params.slug)
@@ -331,7 +334,7 @@ export default {
     // const paginationList = ({
     //   {}
     // })
-    return { catalogList, request, cList }
+    return { catalogList, request, cList, capitalLetter, items }
   }
 }
 </script>
