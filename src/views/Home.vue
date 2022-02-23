@@ -1,7 +1,10 @@
 <template>
   <div >
     <Loader v-if="loading" />
-    <!-- <PopUpWindow /> -->
+    <PopUpWindow
+      v-if="modal"
+      @close="modal = false"
+    />
     <Promo :advert_data="salesRequest.advert" />
     <SearchFilter />
     <Categories />
@@ -9,7 +12,7 @@
       :salesRequest="salesRequest.sale"
       :productsTabs="productsTabs"
       title="BEST SELLERS">
-      <button class="products__link-more" @click="modal = true">show more</button>
+      <button class="products__link-more">show more</button>
     </SliderSection>
     <Banner />
     <Brands />
@@ -30,7 +33,7 @@ import Categories from '@/components/TheCategories.vue'
 import SliderSection from '@/components/SliderSection.vue'
 import Banner from '@/components/ui/Banner.vue'
 import Loader from '@/components/ui/Loader1.vue'
-// import PopUpWindow from '@/components/ui/PopUpWindow.vue'
+import PopUpWindow from '@/components/ui/PopUpWindow.vue'
 import Brands from '@/components/ui/Brands.vue'
 
 export default {
@@ -42,18 +45,23 @@ export default {
     SliderSection,
     Banner,
     Loader,
-    Brands
-    // PopUpWindow
+    Brands,
+    PopUpWindow
   },
 
   setup () {
     const store = useStore()
     const loading = ref(false)
+    const modal = ref(false)
 
     onMounted(async () => {
       loading.value = true
       await store.dispatch('request/load')
       loading.value = false
+
+      setTimeout(() => {
+        modal.value = true
+      }, 1000)
     })
     const salesRequest = computed(() => store.getters['request/requests'])
 
@@ -72,7 +80,7 @@ export default {
       // { title: 'Flask' },
       // { title: 'Stones' }
     ])
-    return { productsTabs, accessoriesTabs, salesRequest, loading }
+    return { productsTabs, accessoriesTabs, salesRequest, loading, modal }
   }
 
 }

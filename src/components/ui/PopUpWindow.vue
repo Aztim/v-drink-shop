@@ -1,5 +1,5 @@
 <template>
-<div class="popup" :class="{'hide__popup': hidePopup}">
+<div class="popup">
   <div class="popup__content">
     <div class="popup__close" @click="$emit('close')">
       <svg>
@@ -27,12 +27,7 @@
 
 <script>
 export default {
-  emits: ['close'],
-  props: {
-    hidePopup: {
-      type: Boolean
-    }
-  }
+  emits: ['close']
 }
 </script>
 
