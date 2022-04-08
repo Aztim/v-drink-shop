@@ -3,10 +3,10 @@
   <div class="container">
     <ul class="breadcrumbs__list">
       <li class="breadcrumbs__list-item">
-        <a href="#">home</a>
+        <a href="/">home</a>
       </li>
       <li class="breadcrumbs__list-item">
-        <a href="#">{{  breadcrumb }}</a>
+        <a href="#">{{ breadcrumb }}</a>
       </li>
       <li class="breadcrumbs__list-item">
         <span>{{ product.title }}</span>
@@ -160,23 +160,6 @@ export default {
     const loading = ref(true)
     const breadcrumb = ref()
 
-    const productData = (
-      {
-        img: require('@/assets/img/products/jameson.png'),
-        oldPrice: 39.99,
-        priceNew: 36.99,
-        title: 'Jameson Black Barrel Irish Whiskey 70cl',
-        sku: '0002190',
-        card__list:
-          {
-            Country: 'Ireland',
-            'Strength (ABV)': '40%',
-            Size: ' 700ml',
-            'Limited Edition': 'No',
-            Brand: 'jameson'
-          }
-      }
-    )
     const pageTabs = {
       tab1: 'Details',
       tab2: 'Reviews',
@@ -222,7 +205,7 @@ export default {
       }
       return require('@/assets/img/products/' + img)
     }
-    return { productData, pageTabs, addressList, product, productImage, isOpen, loading, breadcrumb }
+    return { pageTabs, addressList, product, productImage, isOpen, loading, breadcrumb }
   }
 }
 </script>

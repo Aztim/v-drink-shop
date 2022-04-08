@@ -15,7 +15,7 @@
       <button class="products__link-more">show more</button>
     </SliderSection>
     <Banner />
-    <Brands />
+    <!-- <Brands /> -->
     <SliderSection
       :salesRequest="salesRequest.accessories"
       title="RELATED PRODUCTS"
@@ -34,7 +34,7 @@ import SliderSection from '@/components/SliderSection.vue'
 import Banner from '@/components/ui/Banner.vue'
 import Loader from '@/components/ui/Loader1.vue'
 import PopUpWindow from '@/components/ui/PopUpWindow.vue'
-import Brands from '@/components/ui/Brands.vue'
+// import Brands from '@/components/ui/Brands.vue'
 
 export default {
   name: 'Home',
@@ -45,7 +45,6 @@ export default {
     SliderSection,
     Banner,
     Loader,
-    Brands,
     PopUpWindow
   },
 
@@ -76,9 +75,6 @@ export default {
 
     const accessoriesTabs = ([
       { title: 'Shakers' }
-      // { title: 'Barrels' },
-      // { title: 'Flask' },
-      // { title: 'Stones' }
     ])
     return { productsTabs, accessoriesTabs, salesRequest, loading, modal }
   }

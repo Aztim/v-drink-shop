@@ -9,6 +9,7 @@
             sales, promotions,new products, events and more!
           </span>
         </p>
+
         <form class="footer__subscribe-form" action="#">
           <input class="footer__subscribe-input" type="text" placeholder="Email*">
           <button class="footer__subscribe-btn" type="submit">subscribe</button>

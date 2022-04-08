@@ -30,9 +30,11 @@
           <option value="">By price</option>
           <option value="">By rating</option>
         </select>
+
         <button class="catalog__filter-grid active" type="button">
           <img src="@/assets/img/icons/filter_grid.svg" alt="grid">
         </button>
+
         <button class="catalog__filter-line" type="button">
           <img src="@/assets/img/icons/filter_line.svg" alt="line">
         </button>
@@ -95,7 +97,7 @@
                       </div>
                     </div>
                   </li>
-                  <li class="aside-filter__item-drop">
+                  <!-- <li class="aside-filter__item-drop">
                     <p class="aside-filter__item-title filter__item-drop">Price</p>
                     <div class="aside-filter__content aside-filter__content--slider">
                       <input type="text" class="js-range-slider" value="" />
@@ -106,8 +108,8 @@
                         <input type="text" class="js-input-to" value="0" />
                       </div>
                     </div>
-                  </li>
-                  <li class="aside-filter__item-list">
+                  </li> -->
+                  <!-- <li class="aside-filter__item-list">
                     <div class="aside-filter__item-list-content">
                       <p class="aside-filter__item-title">
                         VOLUME
@@ -118,8 +120,8 @@
                         <option value="154">1L</option>
                       </select>
                     </div>
-                  </li>
-                  <li class="aside-filter__item-drop">
+                  </li> -->
+                  <!-- <li class="aside-filter__item-drop">
                     <p class="aside-filter__item-title filter__item-drop">Brand</p>
                     <div class="aside-filter__content">
                       <div class="aside-filter__content-box">
@@ -144,7 +146,7 @@
                         <button class="aside-filter__item-btn" type="button">Show more</button>
                       </div>
                     </div>
-                  </li>
+                  </li> -->
                   <!-- <li class="aside-filter__item-drop">
                     <p class="aside-filter__item-title filter__item-drop">Модель</p>
                     <div class="aside-filter__content">
@@ -181,10 +183,12 @@
                     </div>
                   </li> -->
 
-                  <li class="aside-filter__item-drop">
+                  <!-- <li class="aside-filter__item-drop">
                     <p class="aside-filter__item-title filter__item-drop">Country</p>
                     <div class="aside-filter__content">
-                      <div class="aside-filter__content-box">
+                      <div
+                        class="aside-filter__content-box"
+                        >
                         <label class="aside-filter__content-label">
                           <input class="filter-style" type="checkbox" checked>
                           USA
@@ -212,7 +216,7 @@
                         <button class="aside-filter__item-btn" type="button">Show more</button>
                       </div>
                     </div>
-                  </li>
+                  </li> -->
                   <li class="aside-filter__item-drop aside-filter__item-submit">
                     <button class="filter-btn__send filter-btn__send--active">Sort</button>
                     <!-- <p class="filter-btn__extra">Дополнительные параметры</p>
@@ -223,16 +227,17 @@
               </form>
 
             </div>
-            <div class="aside-filter-tabs__content-item">filters 2</div>
+            <!-- <div class="aside-filter-tabs__content-item">filters 2</div> -->
           </div>
         </aside>
       </div>
 
-      <div class="catalog__wrapper-list">
+      <Loader v-if="loading" />
+      <div class="catalog__wrapper-list" v-else>
         <div
           class="product-item__wrapper"
-          v-for="c in cList"
-          :key=c.title
+          v-for="p in productsList"
+          :key= p.title
         >
           <button class="product-item__favourite" type="button"></button>
           <button class="product-item__basket" type="button">
@@ -244,15 +249,22 @@
           <!-- <a class="product-item" href="#" :class="c.class"> -->
             <router-link
               class="product-item"
-              :class="c.class"
-              :to="{name: 'Catalogtem', params: {id: c.id, slug: slug }}"
+              :class="p.class"
+              :to="{name: 'Catalogtem', params: {id: p.id, slug: slug }}"
             >
               <p class="product-item__hover-text">
                 view the product
               </p>
-              <img class="product-item__img" :src="require(`@/assets/img/products/${c.img}`)" alt="popular">
-              <h3 class="product-item__title">{{ c.title }}</h3>
-              <p class="product-item__price">${{ c.price }}</p>
+                <!-- <PulseLoader
+                v-if="loading"
+                color="#1E90FF"
+                :size="size"
+                class="product-item__loader"
+                /> -->
+
+              <img class="product-item__img" :src="require(`@/assets/img/products/${p.img}`)" alt="popular">
+              <h3 class="product-item__title">{{ p.title }}</h3>
+              <p class="product-item__price">${{ p.price }}</p>
               <p class="product-item__notify-text">
                 нет в наличии
               </p>
@@ -281,64 +293,48 @@
 import { ref, watch, computed, onMounted } from 'vue'
 import { useStore } from 'vuex'
 import { useRoute } from 'vue-router'
+import Loader from '@/components/ui/Loader1.vue'
 
 export default {
+  components: { Loader },
   props: {
     slug: {
       type: String,
       required: true
     }
   },
-  setup (props) {
-    const catalogList = ([
-      { img: 'jameson.png', title: 'JAMESON BLACK BARREL', price: '£36.99', class: '' },
-      { img: 'jameson.png', title: 'JAMESON BLACK BARREL', price: '£36.99', class: 'product-item__sale' },
-      { img: 'jameson.png', title: 'JAMESON BLACK BARREL', price: '£36.99', class: '' },
-      { img: 'jameson.png', title: 'JAMESON BLACK BARREL', price: '£36.99', class: '' },
-      { img: 'jameson.png', title: 'JAMESON BLACK BARREL', price: '£36.99', class: '' },
-      { img: 'jameson.png', title: 'JAMESON BLACK BARREL', price: '£36.99', class: '' },
-      { img: 'jameson.png', title: 'JAMESON BLACK BARREL', price: '£36.99', class: '' },
-      { img: 'jameson.png', title: 'JAMESON BLACK BARREL', price: '£36.99', class: '' },
-      { img: 'jameson.png', title: 'JAMESON BLACK BARREL', price: '£36.99', class: '' },
-      { img: 'jameson.png', title: 'JAMESON BLACK BARREL', price: '£36.99', class: '' },
-      { img: 'jameson.png', title: 'JAMESON BLACK BARREL', price: '£36.99', class: '' },
-      { img: 'jameson.png', title: 'JAMESON BLACK BARREL', price: '£36.99', class: '' }
-    ])
-
+  setup () {
+    const loading = ref(true)
     const request = ref({})
     const route = useRoute()
     const store = useStore()
-    const items = ref([])
 
-    const initDate = async (slug) => { await store.dispatch('request/loadProductsByType', slug) }
+    const initDate = async () => {
+      await store.dispatch('request/loadProductsByType', route.params.slug)
+    }
 
     const capitalLetter = (s) => s.charAt(0).toUpperCase() + s.slice(1)
 
     onMounted(async () => {
-      initDate(route.params.slug)
+      loading.value = true
+      await initDate()
+      loading.value = false
     })
 
-    watch(() => route.params, values => {
-      initDate(values.slug)
+    watch(() => {
+      initDate()
     })
-    const cList = computed(() => store.getters['request/products'])
+    const productsList = computed(() => store.getters['request/products'])
 
-    // loading.value = true
-    // const { type, id } = route.params
-
-    // request.value = await store.dispatch('request/loadProducts', route.params.type)
-
-    // request.value = await store.dispatch('request/loadItem', `${type}/${id}`)
-    // loading.value = false
-    // })
-    // const paginationList = ({
-    //   {}
-    // })
-    return { catalogList, request, cList, capitalLetter, items }
+    return { loading, request, productsList, capitalLetter }
   }
 }
 </script>
 
 <style>
-
+/* .product-item__loader {
+  position: absolute;
+  right: 40%;
+  top: 50%;
+} */
 </style>

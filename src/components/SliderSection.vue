@@ -21,9 +21,6 @@
         <div class="products-tabs__content-header">
           <div class="products-tabs__content-item popular-tabs__content-item active">
             <div class="product-slider">
-              <!-- <vue3Carousel
-                :productList="productList"
-              /> -->
               <Swiper
                 :productList="productList"
               />
@@ -48,16 +45,16 @@ import Swiper from './ui/SwiperJs.vue'
 export default {
   props: {
     salesRequest: {
-      type: Object,
-      required: true
+      type: Object
+      // required: true
     },
     salesAccessories: {
-      type: Object,
-      required: true
+      type: Object
+      // required: true
     },
     productsTabs: {
-      type: Array,
-      required: true
+      type: Array
+      // required: true
     },
     title: {
       type: String,

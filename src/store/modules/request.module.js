@@ -5,20 +5,20 @@ export default {
   state () {
     return {
       requests: [],
-      products: [],
-      oneProduct: []
+      allProducts: [],
+      product: []
     }
   },
 
   mutations: {
-    setRequests (state, requests1) {
-      state.requests = requests1
+    setRequests (state, requests) {
+      state.requests = requests
     },
     setProducts (state, requests2) {
       state.products = requests2
     },
-    setProductById (state, requests3) {
-      state.oneProduct = requests3
+    setProductById (state, allProducts) {
+      state.product = allProducts
     }
   },
 
@@ -78,7 +78,7 @@ export default {
       return state.products
     },
     oneProduct (state) {
-      return state.oneProduct
+      return state.product
     }
   }
 }
