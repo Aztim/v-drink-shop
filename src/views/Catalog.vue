@@ -25,10 +25,10 @@
       </div>
 
       <div class="catalog__filter--right">
-        <select class="catalog__filter-select filter-style">
-          <option value="">By popularity</option>
-          <option value="">By price</option>
-          <option value="">By rating</option>
+        <select class="catalog__filter-select filter-style" v-model="status">
+          <option value="popularity">By popularity</option>
+          <option value="price">By price</option>
+          <option value="rating">By rating</option>
         </select>
 
         <button class="catalog__filter-grid active" type="button">
@@ -271,18 +271,7 @@
             </router-link>
           <!-- </a> -->
         </div>
-
-        <div class="pagination">
-          <ul class="pagination__list">
-            <li class="pagination__list-item active"><a href="#">1</a></li>
-            <li class="pagination__list-item"><a href="#">2</a></li>
-            <li class="pagination__list-item"><a href="#">3</a></li>
-            <li class="pagination__list-item"><a href="#">4</a></li>
-            <li class="pagination__list-item"><a href="#">5</a></li>
-            <li class="pagination__list-item pagination__list-item--dots"><a href="#">...</a></li>
-            <li class="pagination__list-item"><a href="#">11</a></li>
-          </ul>
-        </div>
+        <Pagination />
       </div>
     </div>
   </div>
@@ -294,9 +283,10 @@ import { ref, watch, computed, onMounted } from 'vue'
 import { useStore } from 'vuex'
 import { useRoute } from 'vue-router'
 import Loader from '@/components/ui/Loader1.vue'
+import Pagination from '@/components/ThePagination.vue'
 
 export default {
-  components: { Loader },
+  components: { Loader, Pagination },
   props: {
     slug: {
       type: String,
@@ -308,6 +298,7 @@ export default {
     const request = ref({})
     const route = useRoute()
     const store = useStore()
+    const status = ref()
 
     const initDate = async () => {
       await store.dispatch('request/loadProductsByType', route.params.slug)
@@ -326,7 +317,7 @@ export default {
     })
     const productsList = computed(() => store.getters['request/products'])
 
-    return { loading, request, productsList, capitalLetter }
+    return { loading, request, productsList, capitalLetter, status }
   }
 }
 </script>
