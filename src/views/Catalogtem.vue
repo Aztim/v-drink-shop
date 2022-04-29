@@ -194,11 +194,11 @@ export default {
     onMounted(async () => {
       loading.value = true
       breadcrumb.value = route.params.slug
-      await store.dispatch('request/loadItemById', route.params)
+      await store.dispatch('request/loadProductById', route.params)
       loading.value = false
     })
 
-    const product = computed(() => store.getters['request/oneProduct'])
+    const product = computed(() => store.getters['request/productById'])
     const productImage = (img) => {
       if (!img) {
         return require('@/assets/img/empty.png')

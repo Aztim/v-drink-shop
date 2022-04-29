@@ -12,6 +12,8 @@
     "axios": "^0.25.0",
     "core-js": "^3.6.5",
     "firebase": "^9.6.5",
+    "lodash.clonedeep": "^4.5.0",
+    "lodash.sortby": "^4.7.0",
     "swiper": "^6.8.4",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",
@@ -35,7 +37,7 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.0",
     "eslint-plugin-vue": "^7.0.0",
-    "node-sass": "^4.12.0",
+    "sass": "^1.50.1",
     "sass-loader": "^8.0.2"
   },
   "eslintConfig": {

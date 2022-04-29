@@ -4,26 +4,29 @@ export default {
   namespaced: true,
   state () {
     return {
-      requests: [],
-      allProducts: [],
-      product: []
+      promoProducts: [],
+      products: [],
+      productById: [],
+      filterData: {
+        option: 'title'
+      }
     }
   },
 
   mutations: {
-    setRequests (state, requests) {
-      state.requests = requests
+    setPromoProducts (state, data) {
+      state.promoProducts = data
     },
-    setProducts (state, requests2) {
-      state.products = requests2
+    setProducts (state, data) {
+      state.products = data
     },
-    setProductById (state, allProducts) {
-      state.product = allProducts
+    setProductById (state, data) {
+      state.productById = data
     }
   },
 
   actions: {
-    async load ({ commit, dispatch }) {
+    async loadPromoProducts ({ commit }) {
       try {
         const { data } = await axios.get('https://vue-drink-shop-default-rtdb.firebaseio.com/sales_product.json')
 
@@ -31,9 +34,8 @@ export default {
         //   axios.get('https://vue-drink-shop-default-rtdb.firebaseio.com/sale.json'),
         //   axios.get('https://vue-drink-shop-default-rtdb.firebaseio.com/accessories.json')
         // ])
-        // const requests = Object.keys(data).map(id => ({ ...data[id] }))
 
-        commit('setRequests', data)
+        commit('setPromoProducts', data)
       } catch (e) {
         // dispatch('setMessage', {
         //   value: e.message,
@@ -42,7 +44,7 @@ export default {
       }
     },
 
-    async loadItemById ({ commit, dispatch }, params) {
+    async loadProductById ({ commit, dispatch }, params) {
       const { slug, id } = params
       try {
         const { data } = await axios.get(`https://vue-drink-shop-default-rtdb.firebaseio.com/products/${slug}/${id}.json`)
@@ -59,8 +61,6 @@ export default {
       try {
         const { data } = await axios.get(`https://vue-drink-shop-default-rtdb.firebaseio.com/products/${slug}.json`)
         const request = Object.keys(data).map(id => ({ ...data[id], id }))
-        console.log(request)
-
         commit('setProducts', request)
       } catch (e) {
         // dispatch('setMessage', {
@@ -68,17 +68,51 @@ export default {
         //   type: 'danger'
         // }, { root: true })
       }
+    },
+
+    filterProducts ({ state }, data) {
+      state.filterData = data
     }
   },
+
   getters: {
-    requests (state) {
-      return state.requests
+    // test (state) {
+    //   return state.filterData
+    // },
+
+    getPromoProducts (state) {
+      return state.promoProducts
     },
-    products (state) {
-      return state.products
+
+    getProducts (state) {
+      const data = state.filterData
+
+      const filterProducts = state.products
+        .filter(product => {
+          if (data.featured) {
+            return product.status.includes(data.featured)
+          }
+          return product
+        })
+
+      if (data.option) {
+        switch (data.option) {
+          case 'title':
+            return filterProducts.sort((post1, post2) => post1[data.option]?.localeCompare(post2[data.option]))
+
+          case 'price:asc':
+            return filterProducts.sort((a, b) => a.price - b.price)
+
+          case 'price:desc':
+            return filterProducts.sort((a, b) => b.price - a.price)
+        }
+      }
+
+      return filterProducts
     },
-    oneProduct (state) {
-      return state.product
+
+    productById (state) {
+      return state.productById
     }
   }
 }

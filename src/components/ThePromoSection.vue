@@ -30,16 +30,16 @@ SwiperCore.use([Pagination, Navigation])
 
 export default {
   props: {
-    advert_data: {
-      type: Object,
-      required: true
+    promoProducts: {
+      type: Object
+      // required: true
     }
   },
   components: { Swiper, SwiperSlide, PromoBanner },
   setup (props) {
     const advert = ref()
     watch(props, val => {
-      advert.value = Object.keys(props.advert_data).map(id => ({ ...props.advert_data[id], id }))
+      advert.value = Object.keys(props.promoProducts).map(id => ({ ...props.promoProducts[id], id }))
     })
 
     return { advert, modules: [Pagination, Navigation] }

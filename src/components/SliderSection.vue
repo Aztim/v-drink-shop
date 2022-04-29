@@ -44,11 +44,7 @@ import Swiper from './ui/SwiperJs.vue'
 
 export default {
   props: {
-    salesRequest: {
-      type: Object
-      // required: true
-    },
-    salesAccessories: {
+    salesProducts: {
       type: Object
       // required: true
     },
@@ -69,7 +65,7 @@ export default {
     const modal = ref(false)
     const tmp = ref()
     watch(props, val => {
-      tmp.value = Object.keys(props.salesRequest).map(id => ({ ...props.salesRequest[id] }))
+      tmp.value = Object.keys(props.salesProducts).map(id => ({ ...props.salesProducts[id] }))
       productList.value = tmp.value[selectedIndex.value]
     })
 

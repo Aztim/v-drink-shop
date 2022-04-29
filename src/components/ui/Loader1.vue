@@ -1,6 +1,6 @@
 <template>
   <div class="loader-wrap">
-  <PulseLoader  color="#1E90FF" :size="size" />
+  <PulseLoader  color="#1E90FF" />
   </div>
 </template>
 
