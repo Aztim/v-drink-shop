@@ -38,45 +38,36 @@
 </section>
 </template>
 
-<script>
-import { ref, watch } from 'vue'
+<script setup>
+import { ref, watch, defineProps } from 'vue'
 import Swiper from './ui/SwiperJs.vue'
 
-export default {
-  props: {
-    salesProducts: {
-      type: Object
-      // required: true
-    },
-    productsTabs: {
-      type: Array
-      // required: true
-    },
-    title: {
-      type: String,
-      required: true
-    }
+const props = defineProps({
+  salesProducts: {
+    type: Object
   },
-  components: { Swiper },
-
-  setup (props) {
-    const productList = ref()
-    const selectedIndex = ref(0)
-    const modal = ref(false)
-    const tmp = ref()
-    watch(props, val => {
-      tmp.value = Object.keys(props.salesProducts).map(id => ({ ...props.salesProducts[id] }))
-      productList.value = tmp.value[selectedIndex.value]
-    })
-
-    const tabsToggle = (id) => {
-      selectedIndex.value = id
-      productList.value = tmp.value[selectedIndex.value]
-    }
-
-    return { selectedIndex, tabsToggle, productList, modal }
+  productsTabs: {
+    type: Array
+  },
+  title: {
+    type: String
   }
+})
+
+const productList = ref()
+const selectedIndex = ref(0)
+const tmp = ref()
+watch(props, val => {
+  tmp.value = tmp.value = props.salesProducts
+
+  productList.value = tmp.value[selectedIndex.value]
+})
+
+const tabsToggle = (id) => {
+  selectedIndex.value = id
+  productList.value = tmp.value[selectedIndex.value]
 }
+
 </script>
 
 <style>

@@ -29,13 +29,16 @@ export default {
     async loadPromoProducts ({ commit }) {
       try {
         const { data } = await axios.get('https://vue-drink-shop-default-rtdb.firebaseio.com/sales_product.json')
-
+        const tmp = []
+        for (const key in data) {
+          tmp.push(Object.keys(data[key]).map(id => ({ ...data[key][id] })))
+        }
         // const [data1, data2] = await Promise.all([
         //   axios.get('https://vue-drink-shop-default-rtdb.firebaseio.com/sale.json'),
         //   axios.get('https://vue-drink-shop-default-rtdb.firebaseio.com/accessories.json')
         // ])
 
-        commit('setPromoProducts', data)
+        commit('setPromoProducts', tmp)
       } catch (e) {
         // dispatch('setMessage', {
         //   value: e.message,
@@ -76,9 +79,6 @@ export default {
   },
 
   getters: {
-    // test (state) {
-    //   return state.filterData
-    // },
 
     getPromoProducts (state) {
       return state.promoProducts

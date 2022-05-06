@@ -66,7 +66,7 @@
               <h3 class="product-item__title">{{ p.title }}</h3>
               <p class="product-item__price">${{ p.price }}</p>
               <p class="product-item__notify-text">
-                нет в наличии
+                Out of stock
               </p>
             </router-link>
           <!-- </a> -->
