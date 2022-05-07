@@ -30,28 +30,24 @@
 </section>
 </template>
 
-<script>
+<script setup>
 import { ref } from 'vue'
-export default {
-  setup () {
-    const searchForm = ([
-      { placeholder: 'Enter the brand' },
-      { placeholder: 'Enter a name' }
 
-    ])
-    const searchTabsTitle = ([
-      { text: 'Find by brand' },
-      { text: 'Find by product name' }
-    ])
-    const selectedIndex = ref(0)
+const searchForm = ([
+  { placeholder: 'Enter the brand' },
+  { placeholder: 'Enter a name' }
 
-    const tabClassToggle = (id) => {
-      selectedIndex.value = id
-    }
+])
+const searchTabsTitle = ([
+  { text: 'Find by brand' },
+  { text: 'Find by product name' }
+])
+const selectedIndex = ref(0)
 
-    return { searchForm, searchTabsTitle, selectedIndex, tabClassToggle }
-  }
+const tabClassToggle = (id) => {
+  selectedIndex.value = id
 }
+
 </script>
 
 <style>

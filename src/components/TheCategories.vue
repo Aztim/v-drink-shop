@@ -23,21 +23,15 @@
 </section>
 </template>
 
-<script>
-export default {
-  setup () {
-    const categoriesTitle = ([
-      { title: 'Vodka', img: 'categories-1.png', slug: 'vodka' },
-      { title: 'Liqueur', img: 'categories-2.png', slug: 'liqueur' },
-      { title: 'Beer', img: 'categories-3.png', slug: 'beer' },
-      { title: 'Cider', img: 'categories-4.png', slug: 'cider' },
-      { title: 'Gin', img: 'categories-5.png', slug: 'gin' },
-      { title: 'Whiskey', img: 'categories-6.png', slug: 'whiskey' }
-    ])
-
-    return { categoriesTitle }
-  }
-}
+<script setup >
+const categoriesTitle = ([
+  { title: 'Vodka', img: 'categories-1.png', slug: 'vodka' },
+  { title: 'Liqueur', img: 'categories-2.png', slug: 'liqueur' },
+  { title: 'Beer', img: 'categories-3.png', slug: 'beer' },
+  { title: 'Cider', img: 'categories-4.png', slug: 'cider' },
+  { title: 'Gin', img: 'categories-5.png', slug: 'gin' },
+  { title: 'Whiskey', img: 'categories-6.png', slug: 'whiskey' }
+])
 </script>
 
 <style>

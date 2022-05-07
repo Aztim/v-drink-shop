@@ -143,71 +143,64 @@
 </section>
 </template>
 
-<script>
+<script setup>
 import Loader from '@/components/ui/Loader1.vue'
 import { ref, onMounted, computed } from 'vue'
 import { useStore } from 'vuex'
 import { useRoute } from 'vue-router'
 
-export default {
-  components: {
-    Loader
-  },
-  setup () {
-    const route = useRoute()
-    const store = useStore()
-    const isOpen = ref(false)
-    const loading = ref(true)
-    const breadcrumb = ref()
+const route = useRoute()
+const store = useStore()
+const isOpen = ref(false)
+const loading = ref(true)
+const breadcrumb = ref()
 
-    const pageTabs = {
-      tab1: 'Details',
-      tab2: 'Reviews',
-      tab3: 'Delivery',
-      tab4: 'Service',
-      tab5: 'Returns & Refunds'
-    }
-    const addressList = [
-      {
-        address: 'New York City, 8th Ave',
-        hours: '7am – 6pm',
-        sunHours: '8am – 1pm',
-        availability: 'In-Stock',
-        quantity: 1
-      },
-      {
-        address: 'New York City, 9th Ave',
-        hours: '7am – 6pm',
-        sunHours: '8am – 1pm',
-        availability: 'In-Stock',
-        quantity: 2
-      },
-      {
-        address: 'New York City, 10th Ave',
-        hours: '7am – 6pm',
-        sunHours: '8am – 1pm',
-        availability: 'Out-Stock',
-        quantity: 0
-      }
-    ]
-
-    onMounted(async () => {
-      loading.value = true
-      breadcrumb.value = route.params.slug
-      await store.dispatch('request/loadProductById', route.params)
-      loading.value = false
-    })
-
-    const product = computed(() => store.getters['request/productById'])
-    const productImage = (img) => {
-      if (!img) {
-        return require('@/assets/img/empty.png')
-      }
-      return require('@/assets/img/products/' + img)
-    }
-    return { pageTabs, addressList, product, productImage, isOpen, loading, breadcrumb }
-  }
+const pageTabs = {
+  tab1: 'Details',
+  tab2: 'Reviews',
+  tab3: 'Delivery',
+  tab4: 'Service',
+  tab5: 'Returns & Refunds'
 }
+const addressList = [
+  {
+    address: 'New York City, 8th Ave',
+    hours: '7am – 6pm',
+    sunHours: '8am – 1pm',
+    availability: 'In-Stock',
+    quantity: 1
+  },
+  {
+    address: 'New York City, 9th Ave',
+    hours: '7am – 6pm',
+    sunHours: '8am – 1pm',
+    availability: 'In-Stock',
+    quantity: 2
+  },
+  {
+    address: 'New York City, 10th Ave',
+    hours: '7am – 6pm',
+    sunHours: '8am – 1pm',
+    availability: 'Out-Stock',
+    quantity: 0
+  }
+]
+
+onMounted(async () => {
+  loading.value = true
+  breadcrumb.value = route.params.slug
+  await store.dispatch('request/loadProductById', route.params)
+  loading.value = false
+})
+
+const product = computed(() => store.getters['request/productById'])
+const productImage = (img) => {
+  if (!img) {
+    return require('@/assets/img/empty.png')
+  }
+  return require('@/assets/img/products/' + img)
+}
+
 </script>
 
 <style>

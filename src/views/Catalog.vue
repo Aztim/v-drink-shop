@@ -78,8 +78,8 @@
 </section>
 </template>
 
-<script>
-import { ref, computed, onMounted, watch } from 'vue'
+<script setup >
+import { ref, computed, onMounted, watch, defineProps } from 'vue'
 import { useStore } from 'vuex'
 import { useRoute } from 'vue-router'
 import Loader from '@/components/ui/Loader1.vue'
@@ -88,55 +88,49 @@ import CatalogFilter from '@/components/ui/CatalogFilter.vue'
 import AsideFilter from '@/components/ui/AsideFilter.vue'
 import _cloneDeep from 'lodash/cloneDeep'
 
-export default {
-  components: { Loader, Pagination, CatalogFilter, AsideFilter },
-  props: {
-    slug: {
-      type: String,
-      required: true
-    }
-  },
-  setup () {
-    const loading = ref(true)
-    const request = ref({})
-    const route = useRoute()
-    const store = useStore()
-    const filter = ref({
-      option: '',
-      featured: ''
-    })
-
-    const sortOptions = ref([
-      { id: 0, key: 'title', section: 'By default' },
-      { id: 2, key: 'price:asc', section: 'Price low to high' },
-      { id: 3, key: 'price:desc', section: 'Price high to low' }
-    ])
-
-    const initDate = async () => {
-      await store.dispatch('request/loadProductsByType', route.params.slug)
-    }
-
-    const capitalLetter = (s) => s.charAt(0).toUpperCase() + s.slice(1)
-
-    onMounted(async () => {
-      loading.value = true
-      await initDate()
-      loading.value = false
-    })
-
-    watch(() => route.params, values => {
-      initDate(values.slug)
-    })
-    watch(() => _cloneDeep(filter.value), () => {
-      changeOption()
-    })
-
-    const productsList = computed(() => store.getters['request/getProducts'])
-    const changeOption = () => store.dispatch('request/filterProducts', filter.value)
-
-    return { loading, request, capitalLetter, sortOptions, productsList, filter }
+// eslint-disable-next-line no-unused-vars
+const props = defineProps({
+  slug: {
+    type: String,
+    required: true
   }
+})
+
+const loading = ref(true)
+const route = useRoute()
+const store = useStore()
+const filter = ref({
+  option: '',
+  featured: ''
+})
+
+const sortOptions = ref([
+  { id: 0, key: 'title', section: 'By default' },
+  { id: 2, key: 'price:asc', section: 'Price low to high' },
+  { id: 3, key: 'price:desc', section: 'Price high to low' }
+])
+
+const initDate = async () => {
+  await store.dispatch('request/loadProductsByType', route.params.slug)
 }
+
+const capitalLetter = (s) => s.charAt(0).toUpperCase() + s.slice(1)
+
+onMounted(async () => {
+  loading.value = true
+  await initDate()
+  loading.value = false
+})
+
+watch(() => route.params, values => {
+  initDate(values.slug)
+})
+watch(() => _cloneDeep(filter.value), () => {
+  changeOption()
+})
+
+const productsList = computed(() => store.getters['request/getProducts'])
+const changeOption = () => store.dispatch('request/filterProducts', filter.value)
 </script>
 
 <style>

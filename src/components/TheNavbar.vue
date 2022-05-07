@@ -51,30 +51,23 @@
 </header>
 </template>
 
-<script>
+<script  setup>
 import { } from 'vue'
+const userList = ([
+  { src: 'heart.svg', alt: 'favorites' },
+  { src: 'user.svg', alt: 'user' },
+  { src: 'basket.svg', alt: 'basket' }
+])
 
-export default {
-  setup () {
-    const userList = ([
-      { src: 'heart.svg', alt: 'favorites' },
-      { src: 'user.svg', alt: 'user' },
-      { src: 'basket.svg', alt: 'basket' }
-    ])
-
-    const categoriesList = ([
-      // { name: 'Vodka', slug: 'vodka', class: 'menu-categories__link--active' },
-      { name: 'Vodka', slug: 'vodka' },
-      { name: 'Liqueur', slug: 'liqueur' },
-      { name: 'Beer', slug: 'beer' },
-      { name: 'Cider', slug: 'cider' },
-      { name: 'Gin', slug: 'gin' },
-      { name: 'Whiskey', slug: 'whiskey' }
-    ])
-
-    return { userList, categoriesList }
-  }
-}
+const categoriesList = ([
+  // { name: 'Vodka', slug: 'vodka', class: 'menu-categories__link--active' },
+  { name: 'Vodka', slug: 'vodka' },
+  { name: 'Liqueur', slug: 'liqueur' },
+  { name: 'Beer', slug: 'beer' },
+  { name: 'Cider', slug: 'cider' },
+  { name: 'Gin', slug: 'gin' },
+  { name: 'Whiskey', slug: 'whiskey' }
+])
 </script>
 
 <style>

@@ -61,32 +61,27 @@
 </footer>
 </template>
 
-<script>
-export default {
-  setup () {
-    const footerInfo = ([
-      { text: 'About Us' },
-      { text: 'Terms & Conditions' },
-      { text: 'News' },
-      { text: 'Careers' }
-    ])
+<script setup>
+const footerInfo = ([
+  { text: 'About Us' },
+  { text: 'Terms & Conditions' },
+  { text: 'News' },
+  { text: 'Careers' }
+])
 
-    const footerShop = ([
-      { text: 'Delivery Information' },
-      { text: 'Order Tracking' },
-      { text: 'Returns Policy' },
-      { text: 'Store Locator' }
-    ])
+const footerShop = ([
+  { text: 'Delivery Information' },
+  { text: 'Order Tracking' },
+  { text: 'Returns Policy' },
+  { text: 'Store Locator' }
+])
 
-    const footerIcon = ([
-      { src: 'instagram' },
-      { src: 'vk' },
-      { src: 'facebook' },
-      { src: 'youtube' }
-    ])
-    return { footerInfo, footerShop, footerIcon }
-  }
-}
+const footerIcon = ([
+  { src: 'instagram' },
+  { src: 'vk' },
+  { src: 'facebook' },
+  { src: 'youtube' }
+])
 </script>
 
 <style>
